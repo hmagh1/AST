@@ -1,0 +1,59 @@
+PHPUnit 9.6.23 by Sebastian Bergmann and contributors.
+
+Testing App\Tests\Controller\AllIntegrationTests
+FFFFFF                                                              6 / 6 (100%)
+
+Time: 00:24.679, Memory: 70.00 MB
+
+There were 6 failures:
+
+1) App\Tests\Controller\AllIntegrationTests::testAdministrateurUCACController
+Failed asserting that an array contains 500.
+
+C:\Users\hassa\Downloads\Astreinte\back\tests\AllIntegrationTests.php:24
+C:\Users\hassa\Downloads\Astreinte\back\tests\AllIntegrationTests.php:41
+phpvfscomposer://C:\Users\hassa\Downloads\Astreinte\back\vendor\phpunit\phpunit\phpunit:106
+
+2) App\Tests\Controller\AllIntegrationTests::testAstreignableController
+Failed asserting that an array contains 500.
+
+C:\Users\hassa\Downloads\Astreinte\back\tests\AllIntegrationTests.php:24
+C:\Users\hassa\Downloads\Astreinte\back\tests\AllIntegrationTests.php:46
+phpvfscomposer://C:\Users\hassa\Downloads\Astreinte\back\vendor\phpunit\phpunit\phpunit:106
+
+3) App\Tests\Controller\AllIntegrationTests::testDRHController
+Failed asserting that an array contains 500.
+
+C:\Users\hassa\Downloads\Astreinte\back\tests\AllIntegrationTests.php:24
+C:\Users\hassa\Downloads\Astreinte\back\tests\AllIntegrationTests.php:51
+phpvfscomposer://C:\Users\hassa\Downloads\Astreinte\back\vendor\phpunit\phpunit\phpunit:106
+
+4) App\Tests\Controller\AllIntegrationTests::testMainCouranteController
+Failed asserting that an array contains 500.
+
+C:\Users\hassa\Downloads\Astreinte\back\tests\AllIntegrationTests.php:24
+C:\Users\hassa\Downloads\Astreinte\back\tests\AllIntegrationTests.php:56
+phpvfscomposer://C:\Users\hassa\Downloads\Astreinte\back\vendor\phpunit\phpunit\phpunit:106
+
+5) App\Tests\Controller\AllIntegrationTests::testPlanningAstreinteController
+Failed asserting that an array contains 500.
+
+C:\Users\hassa\Downloads\Astreinte\back\tests\AllIntegrationTests.php:24
+C:\Users\hassa\Downloads\Astreinte\back\tests\AllIntegrationTests.php:61
+phpvfscomposer://C:\Users\hassa\Downloads\Astreinte\back\vendor\phpunit\phpunit\phpunit:106
+
+6) App\Tests\Controller\AllIntegrationTests::testServiceFaitController
+Failed asserting that an array contains 500.
+
+C:\Users\hassa\Downloads\Astreinte\back\tests\AllIntegrationTests.php:24
+C:\Users\hassa\Downloads\Astreinte\back\tests\AllIntegrationTests.php:66
+phpvfscomposer://C:\Users\hassa\Downloads\Astreinte\back\vendor\phpunit\phpunit\phpunit:106
+
+FAILURES!
+Tests: 6, Assertions: 18, Failures: 6.
+
+Remaining indirect deprecation notices (1)
+
+  1x: Since symfony/framework-bundle 5.4: Not setting the "framework.messenger.reset_on_message" configuration option is deprecated, it will default to "true" in version 6.0.
+    1x in AllIntegrationTests::setUp from App\Tests\Controller
+

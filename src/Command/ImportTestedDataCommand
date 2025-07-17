@@ -1,0 +1,68 @@
+<?php
+namespace App\Command;
+
+use App\Entity\Astreignable;
+use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Console\Attribute\AsCommand;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+
+#[AsCommand(
+    name: 'app:import-tested-data',
+    description: 'Importe les données validées depuis la base de test vers la base principale.'
+)]
+class ImportTestedDataCommand extends Command
+{
+    private ManagerRegistry $doctrine;
+
+    public function __construct(ManagerRegistry $doctrine)
+    {
+        parent::__construct();
+        $this->doctrine = $doctrine;
+    }
+
+    protected function execute(InputInterface $input, OutputInterface $output): int
+    {
+        // Récupère l'EntityManager « test » (doctrine.yaml doit définir un manager nommé "test")
+        $testEm = $this->doctrine->getManager('test');
+        // Récupère l'EntityManager par défaut (base principale)
+        $mainEm = $this->doctrine->getManager();
+
+        // Ex. pour Astreignable :
+        $toImport = $testEm
+            ->getRepository(Astreignable::class)
+            ->findBy(['disponible' => true]); // ou votre critère 'valide' si vous avez ce champ
+
+        foreach ($toImport as $oldEntity) {
+            $new = (new Astreignable())
+                ->setNom($oldEntity->getNom())
+                ->setPrenom($oldEntity->getPrenom())
+                ->setEmail($oldEntity->getEmail())
+                ->setTelephone($oldEntity->getTelephone())
+                ->setSeniorite($oldEntity->getSeniorite())
+                ->setDirection($oldEntity->getDirection())
+                ->setDisponible($oldEntity->getDisponible());
+
+            $mainEm->persist($new);
+        }
+
+        // → Ici, dupliquez le même pattern pour chaque entité à migrer :
+        //   - AdministrateurUCAC
+        //   - DRH
+        //   - PlanningAstreinte
+        //   - ServiceFait
+        //   - MainCourante
+        //
+        // Par exemple :
+        // $services = $testEm->getRepository(ServiceFait::class)->findBy(['valide' => true]);
+        // foreach (…) { $n = new ServiceFait(); … $mainEm->persist($n); }
+
+        $mainEm->flush();
+
+        $output->writeln('<info>Import terminé avec succès.</info>');
+
+        return Command::SUCCESS;
+    }
+}

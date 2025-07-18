@@ -10,6 +10,8 @@ A RESTful API built with Symfony 5.4 to manage astreinte operations: administrat
 - **Symfony CLI** (optional) - [Install](https://symfony.com/download)
 - **Node.js** & **npm** (for frontend) - [Download](https://nodejs.org/)
 
+---
+
 ## Installation
 
 1. Clone the repository and install PHP dependencies:
@@ -18,6 +20,7 @@ A RESTful API built with Symfony 5.4 to manage astreinte operations: administrat
    cd back
    composer install
    ```
+
 2. Copy `.env` and configure database URLs:
    ```bash
    cp .env .env.local
@@ -26,15 +29,48 @@ A RESTful API built with Symfony 5.4 to manage astreinte operations: administrat
    # TEST_TOKEN=test
    # CORS_ALLOW_ORIGIN="^https?://localhost(:[0-9]+)?$"
    ```
+
 3. Create & migrate main database:
    ```bash
    php bin/console doctrine:database:create --env=dev
    php bin/console doctrine:migrations:migrate --env=dev
    ```
+
 4. (Optional) Load fixtures:
    ```bash
    php bin/console doctrine:fixtures:load --env=dev
    ```
+
+---
+
+## API Routes
+
+| Entity         | Base URL             | Example Endpoint         |
+|----------------|----------------------|--------------------------|
+| Admins         | `/api/admins`        | `GET /api/admins`        |
+| Astreignables  | `/api/astreignables` | `POST /api/astreignables`|
+| DRHs           | `/api/drhs`          | `GET /api/drhs/1`        |
+| Main Courantes | `/api/maincourantes` | `DELETE /api/maincourantes/1` |
+| Plannings      | `/api/plannings`     | `PUT /api/plannings/1`   |
+| Services       | `/api/services`      | `GET /api/services`      |
+
+Each resource supports typical REST verbs: `GET`, `POST`, `PUT`, `DELETE`.
+
+---
+
+## Project Structure
+
+| Folder                         | Purpose                                |
+|--------------------------------|----------------------------------------|
+| `src/Entity/`                  | Doctrine entities (business objects)   |
+| `src/Controller/`              | API controllers                        |
+| `src/Repository/`              | Doctrine repositories (DB access)      |
+| `src/Command/`                 | Symfony console commands (e.g. data copy) |
+| `config/`                      | App configuration                      |
+| `tests/AllUnitTests.php`       | Unit tests                             |
+| `tests/AllIntegrationTests.php`| Integration tests                      |
+
+---
 
 ## Testing
 
@@ -45,12 +81,13 @@ php bin/phpunit --testsuite=Unit
 
 ### Integration tests
 ```bash
-# Ensure test DB exists & schema updated
 php bin/console doctrine:database:create --env=test --if-not-exists
 php bin/console doctrine:schema:update --force --env=test
 
 php bin/phpunit --testsuite=Integration
 ```
+
+---
 
 ## CI / GitHub Actions
 
@@ -97,12 +134,9 @@ jobs:
 
       - name: Run integration tests
         run: php bin/phpunit --testsuite=Integration
-
-      - name: Upload coverage report
-        uses: codecov/codecov-action@v3
-        with:
-          fail_ci_if_error: true
 ```
+
+---
 
 ## CORS
 
@@ -120,10 +154,22 @@ nelmio_cors:
         '^/': null
 ```
 
+---
+
 ## Migrate test-to-prod data
 
-See `src/Command/ImportTestedDataCommand.php` (Symfony Console Command) to copy validated records from `astreinte_test` to `astreinte`.
+To copy validated data from the test database (`astreinte_test`) to the main production database (`astreinte`), run the custom Symfony console command found in:
+
+```
+src/Command/ImportTestedDataCommand.php
+```
+
+Usage example:
+```bash
+php bin/console app:import-tested-data
+```
+
+---
 
 ## License
-Proprietary.
-
+Proprietary – for internal use only.

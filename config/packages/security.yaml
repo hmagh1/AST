@@ -15,11 +15,10 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        # Un seul firewall “main” pour tout
-        main:
-            pattern: ^/
+        # === ADMIN EASYADMIN ===
+        admin:
+            pattern: ^/admin
             provider: app_user_provider
-            # point d’entrée pour les accès non authentifiés
             entry_point: App\Security\LoginFormAuthenticator
 
             form_login:
@@ -30,8 +29,29 @@ security:
                 enable_csrf: true
                 csrf_parameter: _csrf_token
                 csrf_token_id: authenticate
-                # redirections par défaut
-                default_target_path: app_home
+                default_target_path: admin_dashboard
+
+            logout:
+                path: app_logout
+                target: app_login
+
+            custom_authenticator: App\Security\LoginFormAuthenticator
+
+        # === ASTREIGNABLE EASYADMIN ===
+        astreignable:
+            pattern: ^/astreignable
+            provider: app_user_provider
+            entry_point: App\Security\LoginFormAuthenticator
+
+            form_login:
+                login_path: app_login
+                check_path: app_login
+                username_parameter: email
+                password_parameter: password
+                enable_csrf: true
+                csrf_parameter: _csrf_token
+                csrf_token_id: authenticate
+                default_target_path: astreignable_dashboard
 
             logout:
                 path: app_logout
@@ -40,10 +60,10 @@ security:
             custom_authenticator: App\Security\LoginFormAuthenticator
 
     access_control:
-        # Seuls les admins (ROLE_ADMIN) peuvent accéder à /admin
-        - { path: ^/admin, roles: ROLE_ADMIN }
-        # Seuls les astreignables (ROLE_USER) peuvent accéder à /astreignable
+        # seuls les admins peuvent accéder à /admin
+        - { path: ^/admin,        roles: ROLE_ADMIN }
+        # seuls les astreignables peuvent accéder à /astreignable
         - { path: ^/astreignable, roles: ROLE_USER }
-        # Tout le monde peut voir la page de login et la home
-        - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        # login & home publics
+        - { path: ^/login$,       roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/$,            roles: IS_AUTHENTICATED_ANONYMOUSLY }

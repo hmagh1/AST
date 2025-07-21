@@ -1,46 +1,55 @@
 <?php
-
+// src/Entity/User.php
 namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+    /** 
+     * @ORM\Id @ORM\GeneratedValue @ORM\Column(type="integer") 
      */
-    private $id;
+    private int $id;
+
+    /** 
+     * @ORM\Column(type="string", length=180, unique=true) 
+     */
+    private string $email;
+
+    /** 
+     * @ORM\Column(type="json") 
+     */
+    private array $roles = [];
+
+    /** 
+     * @ORM\Column(type="string") 
+     */
+    private string $password;
 
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\OneToOne(targetEntity=AdministrateurUCAC::class, inversedBy="user", cascade={"persist"})
+     * @ORM\JoinColumn(name="administrateur_ucac_id", referencedColumnName="id", nullable=true)
      */
-    private $email;
+    private ?AdministrateurUCAC $adminProfile = null;
 
     /**
-     * @ORM\Column(type="json")
+     * @ORM\OneToOne(targetEntity=Astreignable::class, inversedBy="user", cascade={"persist"})
+     * @ORM\JoinColumn(name="astreignable_id", referencedColumnName="id", nullable=true)
      */
-    private $roles = [];
-
-    /**
-     * @var string The hashed password
-     * @ORM\Column(type="string")
-     */
-    private $password;
+    private ?Astreignable $astreignableProfile = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getEmail(): ?string
+    public function getEmail(): string
     {
         return $this->email;
     }
@@ -52,31 +61,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
     public function getUserIdentifier(): string
     {
-        return (string) $this->email;
+        return $this->email;
     }
 
-    /**
-     * @deprecated since Symfony 5.3, use getUserIdentifier instead
-     */
+    /** @deprecated since Symfony 5.3 */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return $this->getUserIdentifier();
     }
 
-    /**
-     * @see UserInterface
-     */
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
+        // guarantee at least ROLE_USER
         $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
@@ -89,9 +88,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @see PasswordAuthenticatedUserInterface
-     */
     public function getPassword(): string
     {
         return $this->password;
@@ -104,23 +100,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * Returning a salt is only needed, if you are not using a modern
-     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
-     *
-     * @see UserInterface
-     */
     public function getSalt(): ?string
     {
+        // not needed with modern algos
         return null;
     }
 
-    /**
-     * @see UserInterface
-     */
-    public function eraseCredentials()
+    public function eraseCredentials(): void
     {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+        // si vous aviez un plainPassword à effacer
+    }
+
+    public function getAdminProfile(): ?AdministrateurUCAC
+    {
+        return $this->adminProfile;
+    }
+
+    public function setAdminProfile(?AdministrateurUCAC $admin): self
+    {
+        $this->adminProfile = $admin;
+        return $this;
+    }
+
+    public function getAstreignableProfile(): ?Astreignable
+    {
+        return $this->astreignableProfile;
+    }
+
+    public function setAstreignableProfile(?Astreignable $astreignable): self
+    {
+        $this->astreignableProfile = $astreignable;
+        return $this;
     }
 }

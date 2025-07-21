@@ -58,7 +58,7 @@ public function onAuthenticationSuccess(Request $request, TokenInterface $token,
     }
 
     // tout le reste – ex. astreignable
-    return new RedirectResponse($this->urlGenerator->generate('astreignable_home'));
+    return new RedirectResponse($this->urlGenerator->generate('astreignable_dashboard'));
 }
 
 

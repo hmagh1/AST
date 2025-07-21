@@ -1,0 +1,8 @@
+{# templates/admin/astreignable/edit.html.twig #}
+{% extends 'admin/dashboard.html.twig' %}
+{% block body %}
+  <h2>Modifier astreignable</h2>
+  {{ form_start(form) }} {{ form_widget(form) }}
+    <button>Enregistrer</button>
+  {{ form_end(form) }}
+{% endblock %}

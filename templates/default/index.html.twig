@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Welcome to Astreinte API{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1>Welcome to the Astreinte API</h1>
+        <p>
+            Use the links below to explore the API endpoints:
+        </p>
+        <ul>
+            <li><a href="{{ path('app_administrateurucac_index') }}">Administrateurs (GET /api/admins)</a></li>
+            <li><a href="{{ path('app_astreignable_index') }}">Astreignables (GET /api/astreignables)</a></li>
+            <li><a href="{{ path('app_drh_index') }}">DRHs (GET /api/drhs)</a></li>
+            <li><a href="{{ path('app_maincourante_index') }}">Main Courantes (GET /api/maincourantes)</a></li>
+            <li><a href="{{ path('app_planningastreinte_index') }}">Plannings (GET /api/plannings)</a></li>
+            <li><a href="{{ path('app_servicefait_index') }}">Services (GET /api/services)</a></li>
+        </ul>
+    </div>
+{% endblock %}

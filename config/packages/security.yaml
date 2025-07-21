@@ -15,31 +15,35 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
+        # Un seul firewall “main” pour tout
         main:
-            lazy: true
+            pattern: ^/
             provider: app_user_provider
-
-            # on précise explicitement l'entry_point
+            # point d’entrée pour les accès non authentifiés
             entry_point: App\Security\LoginFormAuthenticator
 
             form_login:
                 login_path: app_login
                 check_path: app_login
+                username_parameter: email
+                password_parameter: password
+                enable_csrf: true
+                csrf_parameter: _csrf_token
+                csrf_token_id: authenticate
+                # redirections par défaut
+                default_target_path: app_home
 
             logout:
                 path: app_logout
+                target: app_login
 
             custom_authenticator: App\Security\LoginFormAuthenticator
 
     access_control:
-        # vos règles d’accès ici
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-
-when@test:
-    security:
-        password_hashers:
-            Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:
-                algorithm: auto
-                cost: 4
-                time_cost: 3
-                memory_cost: 10
+        # Seuls les admins (ROLE_ADMIN) peuvent accéder à /admin
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        # Seuls les astreignables (ROLE_USER) peuvent accéder à /astreignable
+        - { path: ^/astreignable, roles: ROLE_USER }
+        # Tout le monde peut voir la page de login et la home
+        - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/$, roles: IS_AUTHENTICATED_ANONYMOUSLY }

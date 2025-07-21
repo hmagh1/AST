@@ -1,3 +1,35 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+# config/routes.yaml
+app_home:
+    path: /
+    controller: App\Controller\SecurityController::home
+
+app_login:
+    path: /login
+    controller: App\Controller\SecurityController::login
+
+app_logout:
+    path: /logout
+
+admin_dashboard:
+    path: /admin
+    controller: App\Controller\Admin\DashboardController::index
+
+astreignable_dashboard:
+    path: /astreignable/dashboard
+    controller: App\Controller\Astreignable\DashboardController::index
+# CRUD Astreignable
+admin_astreignable_index:
+    path: /admin/astreignables
+    controller: App\Controller\Admin\AstreignableAdminController::index
+admin_astreignable_new:
+    path: /admin/astreignables/new
+    controller: App\Controller\Admin\AstreignableAdminController::new
+admin_astreignable_show:
+    path: /admin/astreignables/{id}
+    controller: App\Controller\Admin\AstreignableAdminController::show
+admin_astreignable_edit:
+    path: /admin/astreignables/{id}/edit
+    controller: App\Controller\Admin\AstreignableAdminController::edit
+admin_astreignable_delete:
+    path: /admin/astreignables/{id}/delete
+    controller: App\Controller\Admin\AstreignableAdminController::delete

@@ -1,0 +1,12 @@
+{# templates/admin/astreignable/show.html.twig #}
+{% extends 'admin/dashboard.html.twig' %}
+{% block body %}
+  <h2>Détail astreignable</h2>
+  <p>Nom : {{ item.nom }}</p>
+  <p>Prénom : {{ item.prenom }}</p>
+  <p>Email : {{ item.email }}</p>
+  <form method="post" action="{{ path('admin_astreignable_delete',{id:item.id}) }}">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete'~item.id) }}">
+    <button>Supprimer</button>
+  </form>
+{% endblock %}

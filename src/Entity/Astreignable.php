@@ -38,13 +38,13 @@ class Astreignable
     /** @ORM\Column(type="boolean") @Groups({"astreignable:read"}) */
     private bool $disponible;
 
-    /** @ORM\ManyToMany(targetEntity="App\Entity\PlanningAstreinte", mappedBy="binome") */
+    /** @ORM\ManyToMany(targetEntity=App\Entity\PlanningAstreinte::class, mappedBy="binome") */
     private Collection $plannings;
 
-    /** @ORM\OneToMany(targetEntity="App\Entity\ServiceFait", mappedBy="astreignable") */
+    /** @ORM\OneToMany(targetEntity=App\Entity\ServiceFait::class, mappedBy="astreignable") */
     private Collection $services;
 
-    /** @ORM\OneToMany(targetEntity="App\Entity\MainCourante", mappedBy="astreignable") */
+    /** @ORM\OneToMany(targetEntity=App\Entity\MainCourante::class, mappedBy="astreignable") */
     private Collection $mainCourantes;
 
     /**
@@ -52,12 +52,22 @@ class Astreignable
      */
     private ?User $user = null;
 
+    /**
+     * Champ virtuel pour saisir le mot de passe en clair dans EasyAdmin.
+     * Il n’est pas persisté par Doctrine.
+     *
+     * @Groups({"astreignable:read"})
+     */
+    private ?string $plainPassword = null;
+
     public function __construct()
     {
         $this->plannings     = new ArrayCollection();
         $this->services      = new ArrayCollection();
         $this->mainCourantes = new ArrayCollection();
     }
+
+    // -- getters / setters pour les champs persistés --
 
     public function getId(): ?int
     {
@@ -215,11 +225,15 @@ class Astreignable
 
     public function removeMainCourante(MainCourante $mainCourante): self
     {
-        if ($this->mainCourantes->removeElement($mainCourante) && $mainCourante->getAstreignable() === $this) {
-            $mainCourante->setAstreignable(null);
+        if ($this->mainCourantes->removeElement($mainCourante)) {
+            if ($mainCourante->getAstreignable() === $this) {
+                $mainCourante->setAstreignable(null);
+            }
         }
         return $this;
     }
+
+    // -- relation utilisateur --
 
     public function getUser(): ?User
     {
@@ -232,6 +246,19 @@ class Astreignable
         if ($user && $user->getAstreignableProfile() !== $this) {
             $user->setAstreignableProfile($this);
         }
+        return $this;
+    }
+
+    // -- getters / setters pour le mot de passe en clair --
+
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword(?string $plainPassword): self
+    {
+        $this->plainPassword = $plainPassword;
         return $this;
     }
 }

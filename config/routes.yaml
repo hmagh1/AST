@@ -1,9 +1,11 @@
-# Active toutes les annotations @Route() dans src/Controller
 controllers:
     resource: '../src/Controller/'
     type: annotation
 
-# login / logout
+app_home:
+    path: /
+    controller: App\Controller\SecurityController::home
+
 app_login:
     path: /login
     controller: App\Controller\SecurityController::login
@@ -11,21 +13,14 @@ app_login:
 app_logout:
     path: /logout
 
-app_home:
-    path: /
-    controller: App\Controller\SecurityController::home
-
-# EasyAdmin pour les admins
 admin_dashboard:
     path: /admin
     controller: App\Controller\Admin\DashboardController::index
 
-# EasyAdmin pour les astreignables
 astreignable_dashboard:
     path: /astreignable
     controller: App\Controller\Astreignable\DashboardController::index
 
-# Monte EasyAdmin sur /admin et /astreignable
 easy_admin_bundle:
     resource: '@EasyAdminBundle/Controller/'
     type: annotation

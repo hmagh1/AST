@@ -1,9 +1,11 @@
 <?php
+// src/Entity/AdministrateurUCAC.php
 namespace App\Entity;
 
 use App\Repository\AdministrateurUCACRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use App\Entity\User;
 
 /**
  * @ORM\Entity(repositoryClass=AdministrateurUCACRepository::class)
@@ -31,10 +33,10 @@ class AdministrateurUCAC
     private string $email;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\OneToOne(targetEntity=User::class, mappedBy="adminProfile", cascade={"persist", "remove"})
+     * @Groups({"admin:read"})
      */
-    private User $user;
+    private ?User $user = null;
 
     public function getId(): ?int
     {
@@ -63,7 +65,7 @@ class AdministrateurUCAC
         return $this;
     }
 
-    public function getUser(): User
+    public function getUser(): ?User
     {
         return $this->user;
     }
@@ -71,8 +73,14 @@ class AdministrateurUCAC
     public function setUser(User $user): self
     {
         $this->user = $user;
-        // On aligne l’email métier avec l’email de connexion
+        // Synchroniser l’email métier avec l’email du User
         $this->email = $user->getUserIdentifier();
+
+        // S’assurer de la relation inverse :
+        if ($user->getAdminProfile() !== $this) {
+            $user->setAdminProfile($this);
+        }
+
         return $this;
     }
 }

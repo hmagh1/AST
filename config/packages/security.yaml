@@ -15,44 +15,20 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        # === ADMIN EASYADMIN ===
-        admin:
-            pattern: ^/admin
+        main:
+            pattern: ^/
             provider: app_user_provider
             entry_point: App\Security\LoginFormAuthenticator
 
             form_login:
-                login_path: app_login
-                check_path: app_login
+                login_path:    app_login
+                check_path:    app_login
                 username_parameter: email
                 password_parameter: password
-                enable_csrf: true
-                csrf_parameter: _csrf_token
-                csrf_token_id: authenticate
-                default_target_path: admin_dashboard
-
-            logout:
-                path: app_logout
-                target: app_login
-
-            custom_authenticator: App\Security\LoginFormAuthenticator
-
-        # === ASTREIGNABLE EASYADMIN ===
-        astreignable:
-            pattern: ^/astreignable
-            provider: app_user_provider
-            entry_point: App\Security\LoginFormAuthenticator
-
-            form_login:
-                login_path: app_login
-                check_path: app_login
-                username_parameter: email
-                password_parameter: password
-                enable_csrf: true
-                csrf_parameter: _csrf_token
-                csrf_token_id: authenticate
-                default_target_path: astreignable_dashboard
-
+                enable_csrf:   true
+                csrf_parameter:   _csrf_token
+                csrf_token_id:    authenticate
+                # on supprime default_target_path !
             logout:
                 path: app_logout
                 target: app_login
@@ -60,10 +36,7 @@ security:
             custom_authenticator: App\Security\LoginFormAuthenticator
 
     access_control:
-        # seuls les admins peuvent accéder à /admin
-        - { path: ^/admin,        roles: ROLE_ADMIN }
-        # seuls les astreignables peuvent accéder à /astreignable
-        - { path: ^/astreignable, roles: ROLE_USER }
-        # login & home publics
+        - { path: ^/admin,        roles: ROLE_ADMIN   }
+        - { path: ^/astreignable, roles: ROLE_USER    }
         - { path: ^/login$,       roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/$,            roles: IS_AUTHENTICATED_ANONYMOUSLY }

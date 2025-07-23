@@ -35,5 +35,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Mes services',  'fa fa-briefcase', \App\Entity\ServiceFait::class);
         yield MenuItem::linkToCrud('Mes plannings', 'fa fa-calendar-alt', \App\Entity\PlanningAstreinte::class);
         yield MenuItem::linkToCrud('Mes logs',      'fa fa-book',       \App\Entity\MainCourante::class);
+        // Déconnexion
+        yield MenuItem::linkToLogout('Déconnexion', 'fas fa-sign-out-alt');
+    
     }
 }

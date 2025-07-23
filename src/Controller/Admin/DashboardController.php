@@ -64,5 +64,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Main Courantes', 'fas fa-book', MainCourante::class);
         yield MenuItem::linkToCrud('Planning', 'fas fa-calendar-alt', PlanningAstreinte::class);
         yield MenuItem::linkToCrud('Services Faits', 'fas fa-clipboard-check', ServiceFait::class);
+        // Déconnexion
+        yield MenuItem::linkToLogout('Déconnexion', 'fas fa-sign-out-alt');
+    
     }
 }

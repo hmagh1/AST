@@ -30,3 +30,6 @@ easy_admin_astreignable:
     resource: '@EasyAdminBundle/Controller/'
     type: annotation
     prefix: /astreignable
+lexik_jwt_authentication_login:
+    path: /api/login_check
+    controller: lexik_jwt_authentication.controller.authentication::getToken

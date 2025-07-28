@@ -33,7 +33,10 @@ class PlanningAstreinte
  * @ORM\JoinTable(name="planning_astreinte_binome")
  */
 private Collection $binome;
-
+/**
+ * @ORM\Column(type="string", length=150, nullable=true)
+ */
+private $astreintNom;
     public function __construct()
     {
         $this->binome = new ArrayCollection();
@@ -117,6 +120,15 @@ private Collection $binome;
 public function getBinomeNames(): string
 {
     return implode(', ', $this->binome->map(fn($a)=> $a->getPrenom().' '.$a->getNom())->toArray());
+}
+public function getAstreintNom(): ?string
+{
+    return $this->astreintNom;
+}
+public function setAstreintNom(?string $astreintNom): self
+{
+    $this->astreintNom = $astreintNom;
+    return $this;
 }
 
 

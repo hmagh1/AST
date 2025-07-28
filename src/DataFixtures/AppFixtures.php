@@ -1,9 +1,14 @@
 <?php
-// src/DataFixtures/AppFixtures.php
 
 namespace App\DataFixtures;
 
-use App\Entity\{User, Astreignable, PlanningAstreinte, ServiceFait, MainCourante, DRH, AdministrateurUCAC};
+use App\Entity\User;
+use App\Entity\Astreignable;
+use App\Entity\PlanningAstreinte;
+use App\Entity\ServiceFait;
+use App\Entity\MainCourante;
+use App\Entity\DRH;
+use App\Entity\AdministrateurUCAC;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -20,41 +25,48 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        /* ---------- DRH d’exemple ---------- */
-        $drh = (new DRH())->setNom('DRH Central');
+        // DRH d’exemple
+        $drh = (new DRH())->setNom('DRH Hôpital Général');
         $manager->persist($drh);
 
-        /* ---------- Administrateur + User ---------- */
+        // Administrateur + User
         $adminProfile = (new AdministrateurUCAC())
-            ->setNom('Admin UCAC')
-            ->setEmail('admin@ucac.com');
+            ->setNom('Dupont Pierre')
+            ->setEmail('admin@hopital.com');
 
         $adminUser = (new User())
-            ->setEmail('admin@ucac.com')
+            ->setEmail('admin@hopital.com')
             ->setRoles(['ROLE_ADMIN']);
         $adminUser->setPassword($this->hasher->hashPassword($adminUser, 'password'));
 
-        // liaison 1‑1
         $adminProfile->setUser($adminUser);
         $adminUser->setAdminProfile($adminProfile);
 
         $manager->persist($adminUser);
         $manager->persist($adminProfile);
 
-        /* ---------- Astreignables + Users ---------- */
-        for ($i = 1; $i <= 5; $i++) {
+        // Astreignables médicaux
+        $medecins = [
+            ['Jean',    'Martin',    'jean.martin@hopital.com',   '0612345678', 'Urgences',   'Médecin Urgentiste'],
+            ['Marie',   'Dupuis',    'marie.dupuis@hopital.com',  '0623456789', 'Pédiatrie',  'Pédiatre'],
+            ['Sophie',  'Durand',    'sophie.durand@hopital.com', '0634567890', 'Chirurgie',  'Chirurgienne'],
+            ['Luc',     'Moreau',    'luc.moreau@hopital.com',    '0645678901', 'Anesthésie', 'Anesthésiste'],
+            ['Claire',  'Girard',    'claire.girard@hopital.com', '0656789012', 'Cardiologie','Cardiologue'],
+        ];
+
+        foreach ($medecins as $i => [$prenom, $nom, $email, $tel, $direction, $specialite]) {
             $astreignable = (new Astreignable())
-                ->setNom("Nom{$i}")
-                ->setPrenom("Prenom{$i}")
-                ->setEmail("user{$i}@example.com")
-                ->setTelephone("060000000{$i}")
-                ->setSeniorite($i % 2 ? 'Junior' : 'Senior')
-                ->setDirection('Informatique')
+                ->setNom($nom)
+                ->setPrenom($prenom)
+                ->setEmail($email)
+                ->setTelephone($tel)
+                ->setSeniorite($specialite)
+                ->setDirection($direction)
                 ->setDisponible($i % 2 === 0);
 
-            // compte User associé
+            // User associé
             $user = (new User())
-                ->setEmail("user{$i}@example.com")
+                ->setEmail($email)
                 ->setRoles(['ROLE_ASTREIGNABLE']);
             $user->setPassword($this->hasher->hashPassword($user, 'password'));
 
@@ -64,28 +76,29 @@ class AppFixtures extends Fixture
             $manager->persist($user);
             $manager->persist($astreignable);
 
-            /* -------- Service fait -------- */
+            // Service fait
             $service = (new ServiceFait())
                 ->setDate(new DateTime())
-                ->setHeuresEffectuees(4)
+                ->setHeuresEffectuees(8)
                 ->setValide(true)
                 ->setAstreignable($astreignable);
             $manager->persist($service);
 
-            /* -------- Main courante -------- */
+            // Main courante
             $main = (new MainCourante())
                 ->setDate(new DateTime())
-                ->setDetails("Main courante pour utilisateur {$i}")
+                ->setDetails("Main courante pour Dr $prenom $nom")
                 ->setAstreignable($astreignable);
             $manager->persist($main);
 
-            /* -------- Planning -------- */
+            // Planning avec nom affiché
             $planning = (new PlanningAstreinte())
                 ->setDateDebut(new DateTime('-1 day'))
                 ->setDateFin(new DateTime('+1 day'))
-                ->setTheme('Maintenance')
+                ->setTheme($direction)
                 ->setStatut('Actif')
-                ->addBinome($astreignable);   // méthode côté Planning
+                ->addBinome($astreignable)
+                ->setAstreintNom("$prenom $nom"); // Nécessite le champ astreintNom côté entity/migration
             $manager->persist($planning);
         }
 

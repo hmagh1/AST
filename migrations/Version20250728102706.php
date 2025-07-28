@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20250722121205 extends AbstractMigration
+final class Version20250728102706 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -24,7 +24,7 @@ final class Version20250722121205 extends AbstractMigration
         $this->addSql('CREATE TABLE astreignable (id INT AUTO_INCREMENT NOT NULL, nom VARCHAR(100) NOT NULL, prenom VARCHAR(100) NOT NULL, email VARCHAR(150) NOT NULL, telephone VARCHAR(20) NOT NULL, seniorite VARCHAR(50) NOT NULL, direction VARCHAR(100) NOT NULL, disponible TINYINT(1) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE drh (id INT AUTO_INCREMENT NOT NULL, nom VARCHAR(100) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE main_courante (id INT AUTO_INCREMENT NOT NULL, astreignable_id INT NOT NULL, date DATE NOT NULL, details LONGTEXT NOT NULL, INDEX IDX_F03F25FC58F12170 (astreignable_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE planning_astreinte (id INT AUTO_INCREMENT NOT NULL, date_debut DATE NOT NULL, date_fin DATE NOT NULL, theme VARCHAR(100) NOT NULL, statut VARCHAR(50) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE planning_astreinte (id INT AUTO_INCREMENT NOT NULL, date_debut DATE NOT NULL, date_fin DATE NOT NULL, theme VARCHAR(100) NOT NULL, statut VARCHAR(50) NOT NULL, astreint_nom VARCHAR(150) DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE planning_astreinte_binome (planning_astreinte_id INT NOT NULL, astreignable_id INT NOT NULL, INDEX IDX_6721DCB1B19E4A04 (planning_astreinte_id), INDEX IDX_6721DCB158F12170 (astreignable_id), PRIMARY KEY(planning_astreinte_id, astreignable_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE service_fait (id INT AUTO_INCREMENT NOT NULL, astreignable_id INT NOT NULL, date DATE NOT NULL, heures_effectuees INT NOT NULL, valide TINYINT(1) NOT NULL, INDEX IDX_5B0807F358F12170 (astreignable_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, administrateur_ucac_id INT DEFAULT NULL, astreignable_id INT DEFAULT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), UNIQUE INDEX UNIQ_8D93D6498EC860A4 (administrateur_ucac_id), UNIQUE INDEX UNIQ_8D93D64958F12170 (astreignable_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');

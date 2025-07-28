@@ -16,14 +16,17 @@ security:
                 property: email
 
     firewalls:
+        # Routes dev Symfony (profiler, assets, etc.)
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
+        # API authentifiée en JWT
         api:
             pattern:   ^/api
             stateless: true
             provider:  app_user_provider
+
             json_login:
                 check_path: /api/login_check
                 username_path: email
@@ -31,6 +34,11 @@ security:
                 success_handler: lexik_jwt_authentication.handler.authentication_success
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
 
+            # **Le plus important !**
+            custom_authenticators:
+                - lexik_jwt_authentication.jwt_token_authenticator
+
+        # Firewall pour le site web (login, dashboard…)
         main:
             pattern: ^/
             provider: app_user_provider
@@ -51,6 +59,7 @@ security:
             custom_authenticator: App\Security\LoginFormAuthenticator
 
     access_control:
+        # L'ordre est important !
         - { path: ^/api/login_check, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api,            roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/admin,          roles: ROLE_ADMIN }

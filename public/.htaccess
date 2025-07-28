@@ -8,3 +8,5 @@
     # Sinon, on redirige tout vers index.php
     RewriteRule ^ index.php [QSA,L]
 </IfModule>
+
+

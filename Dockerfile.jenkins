@@ -2,12 +2,8 @@ FROM jenkins/jenkins:lts
 
 USER root
 
-# Installe Docker client et Git dans Jenkins
 RUN apt-get update && \
     apt-get install -y docker.io git && \
     rm -rf /var/lib/apt/lists/*
-
-# Pour le support docker-in-docker et le build de projets PHP
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 USER jenkins

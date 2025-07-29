@@ -1,4 +1,4 @@
-version: '3.8'
+# version: '3.8'
 
 services:
   php:
@@ -47,7 +47,7 @@ services:
       - "50000:50000"       # Agent Jenkins (optionnel)
     volumes:
       - jenkins_home:/var/jenkins_home
-      # - /var/run/docker.sock:/var/run/docker.sock  # Décommente si tu veux que Jenkins lance Docker (optionnel)
+      - /var/run/docker.sock:/var/run/docker.sock  # Décommente si tu veux que Jenkins lance Docker (optionnel)
     restart: unless-stopped
 
 volumes:

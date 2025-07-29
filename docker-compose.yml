@@ -23,7 +23,7 @@ services:
       MYSQL_PASSWORD: astreinte
       MYSQL_ROOT_PASSWORD: root
     ports:
-      - "8012:3306"   # Pour connexion locale si tu veux, sinon pas obligatoire
+      - "8012:3306"
     volumes:
       - astreinte-db-data:/var/lib/mysql
 
@@ -35,9 +35,21 @@ services:
       PMA_HOST: db
       MYSQL_ROOT_PASSWORD: root
     ports:
-      - "8011:80"     # Accès à http://localhost:8011
+      - "8011:80"
     depends_on:
       - db
 
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: astreinte-jenkins
+    ports:
+      - "9000:8080"         # Jenkins accessible sur http://localhost:9000
+      - "50000:50000"       # Agent Jenkins (optionnel)
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      # - /var/run/docker.sock:/var/run/docker.sock  # Décommente si tu veux que Jenkins lance Docker (optionnel)
+    restart: unless-stopped
+
 volumes:
   astreinte-db-data:
+  jenkins_home:

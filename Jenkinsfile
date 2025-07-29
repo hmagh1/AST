@@ -12,7 +12,13 @@ pipeline {
         }
         stage('Install dependencies') {
             steps {
-                sh "docker exec ${CONTAINER} composer install --no-interaction --prefer-dist"
+                sh "docker exec ${CONTAINER} composer install --no-interaction --prefer-dist --no-scripts"
+            }
+        }
+        stage('Run Symfony auto-scripts') {
+            steps {
+                // Augmente le timeout à 900s si besoin, sinon tu peux laisser normal
+                sh "docker exec ${CONTAINER} bash -c 'export COMPOSER_PROCESS_TIMEOUT=900 && composer run-script auto-scripts'"
             }
         }
         stage('Lint YAML') {
@@ -32,11 +38,13 @@ pipeline {
         }
         stage('Static Analysis (PHPStan)') {
             steps {
+                sh "mkdir -p var/tests"
                 sh "docker exec ${CONTAINER} vendor/bin/phpstan analyse --error-format=checkstyle > var/tests/phpstan.xml || true"
             }
         }
         stage('Tests') {
             steps {
+                sh "mkdir -p var/tests"
                 sh "docker exec ${CONTAINER} ./vendor/bin/phpunit --log-junit var/tests/junit.xml"
             }
         }
@@ -44,7 +52,7 @@ pipeline {
     post {
         always {
             junit 'var/tests/*.xml'
-            // Si tu as Warnings Next Generation pour PHPStan :
+            // Décommente si tu as installé Warnings NG pour PHPStan
             // recordIssues tools: [phpStan(pattern: 'var/tests/phpstan.xml')]
         }
     }

@@ -38,9 +38,10 @@ services:
       - db
 
   jenkins:
-    image: jenkins/jenkins:lts
+    build:
+      context: .
+      dockerfile: Dockerfile.jenkins
     container_name: astreinte-jenkins
-    user: root                          # << AJOUT pour droits Docker
     ports:
       - "9000:8080"
       - "50000:50000"
@@ -48,6 +49,7 @@ services:
       - jenkins_home:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
+    user: root
 
 volumes:
   astreinte-db-data:

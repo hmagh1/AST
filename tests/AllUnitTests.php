@@ -1,5 +1,5 @@
 <?php
-namespace App\Tests\Entity;
+namespace App\Tests;
 
 use PHPUnit\Framework\TestCase;
 use App\Entity\AdministrateurUCAC;

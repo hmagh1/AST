@@ -1,8 +1,8 @@
 pipeline {
     agent {
         dockerfile {
-            filename 'Dockerfile'      // Le nom du Dockerfile à la racine
-            dir '.'                    // Répertoire de build context (ici racine)
+            filename 'Dockerfile'
+            dir '.'  // build context à la racine
         }
     }
     environment {
@@ -14,11 +14,6 @@ pipeline {
         timestamps()
     }
     stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
         stage('Prepare env file') {
             steps {
                 sh 'cp .env.test .env'
@@ -47,7 +42,7 @@ pipeline {
         }
         stage('Static Analysis') {
             steps {
-                // Ajoute PHPStan si tu l’utilises (sinon tu peux commenter)
+                // Si tu utilises PHPStan
                 sh 'vendor/bin/phpstan analyse --error-format=checkstyle > var/tests/phpstan.xml || true'
             }
         }
@@ -60,7 +55,7 @@ pipeline {
     post {
         always {
             junit 'var/tests/*.xml'
-            // Analyse statique (Warnings Next Generation)
+            // Si plugin Warnings Next Generation + PHPStan
             recordIssues tools: [phpStan(pattern: 'var/tests/phpstan.xml')]
         }
         failure {

@@ -1,5 +1,11 @@
 pipeline {
-    agent any
+    agent {
+        dockerfile {
+            filename 'Dockerfile' // Chemin du Dockerfile dans le repo (ici racine)
+            dir '.'               // Chemin du build context (ici racine du repo)
+            additionalBuildArgs '--build-arg SOME_ARG=xxx'
+        }
+    }
     environment {
         COMPOSER_CACHE_DIR = "${WORKSPACE}/.composer"
         SYMFONY_ENV = 'test'
@@ -10,11 +16,12 @@ pipeline {
     }
     stages {
         stage('Checkout') {
-            steps { checkout scm }
+            steps {
+                checkout scm
+            }
         }
         stage('Prepare env file') {
             steps {
-                // Utilise .env.test pour les tests
                 sh 'cp .env.test .env'
             }
         }
@@ -41,20 +48,18 @@ pipeline {
         }
         stage('Tests') {
             steps {
-                // Génère un rapport JUnit utilisable par Jenkins
                 sh './vendor/bin/phpunit --log-junit var/tests/junit.xml'
             }
         }
     }
     post {
         always {
-            // Rapports de tests pour Jenkins (chemin adapté à ta structure)
             junit 'var/tests/*.xml'
         }
         failure {
             mail to: 'tonmail@domaine.com',
-                 subject: "Le build Jenkins a échoué : ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                 body: "Vérifier Jenkins : ${env.BUILD_URL}"
+                subject: "Le build Jenkins a échoué : ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: "Vérifier Jenkins : ${env.BUILD_URL}"
         }
     }
 }

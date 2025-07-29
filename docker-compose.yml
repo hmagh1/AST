@@ -7,7 +7,7 @@ services:
     volumes:
       - .:/var/www/html
     ports:
-      - "8010:8001"   # http://localhost:8010
+      - "8010:8001"
     depends_on:
       - db
 
@@ -38,18 +38,15 @@ services:
       - db
 
   jenkins:
-    build:
-      context: .
-      dockerfile: Dockerfile.jenkins
-    image: back-jenkins
+    image: jenkins/jenkins:lts
     container_name: astreinte-jenkins
+    user: root                          # << AJOUT pour droits Docker
     ports:
-      - "9000:8080"         # http://localhost:9000
+      - "9000:8080"
       - "50000:50000"
     volumes:
       - jenkins_home:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
-      - .:/workspace   # Le code source du projet dispo dans Jenkins !
     restart: unless-stopped
 
 volumes:

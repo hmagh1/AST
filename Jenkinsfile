@@ -1,9 +1,8 @@
 pipeline {
     agent {
         dockerfile {
-            filename 'Dockerfile' // Chemin du Dockerfile dans le repo (ici racine)
-            dir '.'               // Chemin du build context (ici racine du repo)
-            additionalBuildArgs '--build-arg SOME_ARG=xxx'
+            filename 'Dockerfile'      // Le nom du Dockerfile à la racine
+            dir '.'                    // Répertoire de build context (ici racine)
         }
     }
     environment {
@@ -46,6 +45,12 @@ pipeline {
                 sh 'php bin/console doctrine:migrations:migrate --no-interaction'
             }
         }
+        stage('Static Analysis') {
+            steps {
+                // Ajoute PHPStan si tu l’utilises (sinon tu peux commenter)
+                sh 'vendor/bin/phpstan analyse --error-format=checkstyle > var/tests/phpstan.xml || true'
+            }
+        }
         stage('Tests') {
             steps {
                 sh './vendor/bin/phpunit --log-junit var/tests/junit.xml'
@@ -55,6 +60,8 @@ pipeline {
     post {
         always {
             junit 'var/tests/*.xml'
+            // Analyse statique (Warnings Next Generation)
+            recordIssues tools: [phpStan(pattern: 'var/tests/phpstan.xml')]
         }
         failure {
             mail to: 'tonmail@domaine.com',

@@ -30,11 +30,11 @@ class AdministrateurUCAC
      */
     private string $email;
 
-    /**
-     * @ORM\OneToOne(targetEntity=User::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private User $user;
+   /**
+ * @ORM\OneToOne(targetEntity=User::class, mappedBy="adminProfile", cascade={"persist", "remove"})
+ */
+private User $user;
+
 
     public function getId(): ?int
     {

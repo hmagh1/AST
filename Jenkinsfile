@@ -17,7 +17,6 @@ pipeline {
         }
         stage('Run Symfony auto-scripts') {
             steps {
-                // Augmente le timeout à 900s si besoin, sinon tu peux laisser normal
                 sh "docker exec ${CONTAINER} bash -c 'export COMPOSER_PROCESS_TIMEOUT=900 && composer run-script auto-scripts'"
             }
         }
@@ -39,7 +38,7 @@ pipeline {
         stage('Static Analysis (PHPStan)') {
             steps {
                 sh "mkdir -p var/tests"
-                sh "docker exec ${CONTAINER} vendor/bin/phpstan analyse --error-format=checkstyle > var/tests/phpstan.xml || true"
+                sh "docker exec ${CONTAINER} vendor/bin/phpstan analyse --error-format=checkstyle > var/tests/phpstan.xml"
             }
         }
         stage('Tests') {
@@ -52,7 +51,6 @@ pipeline {
     post {
         always {
             junit 'var/tests/*.xml'
-            // Décommente si tu as installé Warnings NG pour PHPStan
             // recordIssues tools: [phpStan(pattern: 'var/tests/phpstan.xml')]
         }
     }

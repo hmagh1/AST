@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Repository;
 
 use App\Entity\PlanningAstreinte;
@@ -20,12 +21,29 @@ class PlanningAstreinteRepository extends ServiceEntityRepository
         parent::__construct($registry, PlanningAstreinte::class);
     }
 
-    // Exemple de méthode personnalisée
     public function findLatest(int $limit = 5): array
     {
         return $this->createQueryBuilder('e')
             ->orderBy('e.id', 'DESC')
             ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findByStatut(string $statut): array
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.statut = :statut')
+            ->setParameter('statut', $statut)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findActive(): array
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.statut = :statut')
+            ->setParameter('statut', 'active') // adapte la valeur à ton cas métier
             ->getQuery()
             ->getResult();
     }

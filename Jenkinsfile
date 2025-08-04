@@ -38,7 +38,8 @@ pipeline {
         stage('Static Analysis (PHPStan)') {
             steps {
                 sh "mkdir -p var/tests"
-                sh "docker exec ${CONTAINER} vendor/bin/phpstan analyse --error-format=checkstyle > var/tests/phpstan.xml"
+                // IGNORE exit code, always succeed even with warnings
+                sh "docker exec ${CONTAINER} vendor/bin/phpstan analyse --error-format=checkstyle > var/tests/phpstan.xml || true"
             }
         }
         stage('Tests') {

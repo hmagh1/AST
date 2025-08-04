@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Repository;
 
 use App\Entity\ServiceFait;
@@ -20,12 +21,29 @@ class ServiceFaitRepository extends ServiceEntityRepository
         parent::__construct($registry, ServiceFait::class);
     }
 
-    // Exemple de méthode personnalisée
     public function findLatest(int $limit = 5): array
     {
         return $this->createQueryBuilder('e')
             ->orderBy('e.id', 'DESC')
             ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findValidated(): array
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.valide = :valide')
+            ->setParameter('valide', true)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findByAstreignableId(int $astreignableId): array
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.astreignable = :astreignable')
+            ->setParameter('astreignable', $astreignableId)
             ->getQuery()
             ->getResult();
     }

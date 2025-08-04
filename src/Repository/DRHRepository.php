@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Repository;
 
 use App\Entity\DRH;
@@ -20,7 +21,6 @@ class DRHRepository extends ServiceEntityRepository
         parent::__construct($registry, DRH::class);
     }
 
-    // Exemple de méthode personnalisée
     public function findLatest(int $limit = 5): array
     {
         return $this->createQueryBuilder('e')
@@ -28,5 +28,14 @@ class DRHRepository extends ServiceEntityRepository
             ->setMaxResults($limit)
             ->getQuery()
             ->getResult();
+    }
+
+    public function findOneByNom(string $nom): ?DRH
+    {
+        return $this->createQueryBuilder('d')
+            ->andWhere('d.nom = :nom')
+            ->setParameter('nom', $nom)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 }

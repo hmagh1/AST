@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Repository;
 
 use App\Entity\Astreignable;
@@ -20,12 +21,29 @@ class AstreignableRepository extends ServiceEntityRepository
         parent::__construct($registry, Astreignable::class);
     }
 
-    // Exemple de méthode personnalisée
     public function findLatest(int $limit = 5): array
     {
         return $this->createQueryBuilder('e')
             ->orderBy('e.id', 'DESC')
             ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findAvailable(): array
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.disponible = :disponible')
+            ->setParameter('disponible', true)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findByDirection(string $direction): array
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.direction = :direction')
+            ->setParameter('direction', $direction)
             ->getQuery()
             ->getResult();
     }

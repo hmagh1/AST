@@ -38,7 +38,6 @@ pipeline {
         stage('Static Analysis (PHPStan)') {
             steps {
                 sh "mkdir -p var/tests"
-                // IGNORE exit code, always succeed even with warnings
                 sh "docker exec ${CONTAINER} vendor/bin/phpstan analyse --error-format=checkstyle > var/tests/phpstan.xml || true"
             }
         }
@@ -51,6 +50,8 @@ pipeline {
     }
     post {
         always {
+            // ➡️ Copie le fichier junit.xml du container vers Jenkins (host)
+            sh "docker cp ${CONTAINER}:/var/www/html/var/tests/junit.xml ./var/tests/junit.xml || true"
             junit 'var/tests/*.xml'
             // recordIssues tools: [phpStan(pattern: 'var/tests/phpstan.xml')]
         }

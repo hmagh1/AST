@@ -6,6 +6,7 @@ services:
     container_name: astreinte-php
     volumes:
       - .:/var/www/html
+      - ./var/tests:/var/www/html/var/tests   # <---- AJOUT recommandé
     ports:
       - "8010:8001"
     depends_on:

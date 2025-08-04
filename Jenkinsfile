@@ -37,7 +37,7 @@ pipeline {
         }
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('LocalSonar') {  // Remplace 'LocalSonar' par le nom que tu as mis dans Jenkins
+                withSonarQubeEnv('LocalSonar') {  // Mets le nom correct de ton Sonar ici
                     sh "docker exec ${CONTAINER} ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml || true"
                     sh "docker exec ${CONTAINER} sonar-scanner -Dsonar.projectKey=astreinte -Dsonar.php.coverage.reportPaths=build/logs/clover.xml"
                 }
@@ -53,6 +53,20 @@ pipeline {
             steps {
                 sh "mkdir -p var/tests"
                 sh "docker exec ${CONTAINER} ./vendor/bin/phpunit --log-junit var/tests/junit.xml"
+            }
+        }
+        stage('Deploy to Azure VM') {
+            when {
+                branch 'main' // déploie seulement sur main
+            }
+            steps {
+                sshagent(['jenkins-azure-key']) {
+                    sh '''
+                    ssh -o StrictHostKeyChecking=no azureuser@4.178.177.191 '
+                        cd ~/AST && git pull origin main && docker-compose down && docker-compose up -d --build
+                    '
+                    '''
+                }
             }
         }
     }

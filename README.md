@@ -1,7 +1,7 @@
 # Astreinte API
 
 ## Overview
-A RESTful API built with Symfony 5.4 to manage astreinte operations: administrators, on-call staff (astreignables), HR (DRH), main logs (main courantes), service records, and schedules. Includes unit and integration tests, and a CI-friendly setup.
+A RESTful API built with Symfony 5.4 to manage astreinte operations: administrators, on-call staff (astreignables), HR (DRH), main logs (main courantes), service records, and schedules. Includes unit and integration tests, and a CI/CD pipeline using Jenkins and Docker.
 
 ## Requirements
 - **PHP** >= 7.2.5 (tested on PHP 7.4.33) - [Download](https://www.php.net/downloads.php)
@@ -45,6 +45,12 @@ A RESTful API built with Symfony 5.4 to manage astreinte operations: administrat
 
 ## API Routes
 
+To list available routes:
+```bash
+docker exec astreinte-php php bin/console debug:router
+```
+
+Sample output:
 | Entity         | Base URL             | Example Endpoint         |
 |----------------|----------------------|--------------------------|
 | Admins         | `/api/admins`        | `GET /api/admins`        |
@@ -53,8 +59,8 @@ A RESTful API built with Symfony 5.4 to manage astreinte operations: administrat
 | Main Courantes | `/api/maincourantes` | `DELETE /api/maincourantes/1` |
 | Plannings      | `/api/plannings`     | `PUT /api/plannings/1`   |
 | Services       | `/api/services`      | `GET /api/services`      |
-
-Each resource supports typical REST verbs: `GET`, `POST`, `PUT`, `DELETE`.
+| Exchanges      | `/api/exchanges`     | `POST /api/exchanges`    |
+| PlanningAst    | `/api/planning_astreinte` | `GET /api/planning_astreinte` |
 
 ---
 
@@ -65,7 +71,7 @@ Each resource supports typical REST verbs: `GET`, `POST`, `PUT`, `DELETE`.
 | `src/Entity/`                  | Doctrine entities (business objects)   |
 | `src/Controller/`              | API controllers                        |
 | `src/Repository/`              | Doctrine repositories (DB access)      |
-| `src/Command/`                 | Symfony console commands (e.g. data copy) |
+| `src/Command/`                 | Symfony console commands               |
 | `config/`                      | App configuration                      |
 | `tests/AllUnitTests.php`       | Unit tests                             |
 | `tests/AllIntegrationTests.php`| Integration tests                      |
@@ -89,52 +95,20 @@ php bin/phpunit --testsuite=Integration
 
 ---
 
-## CI / GitHub Actions
+## CI/CD via Jenkins
 
-Sample `.github/workflows/ci.yml`:
-```yaml
-name: CI
+The project uses Jenkins for continuous integration and deployment inside Docker. The Jenkins pipeline includes:
 
-on: [push, pull_request]
+- Install dependencies
+- Lint YAML
+- Validate Doctrine schema
+- Run migrations
+- Run unit/integration tests
+- PHPStan static analysis
+- SonarQube coverage analysis
+- Deploy to Azure VM (via SSH)
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    services:
-      mysql:
-        image: mysql:5.7
-        env:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: astreinte_test
-        ports: ["3306:3306"]
-        options: >-
-          --health-cmd="mysqladmin ping -uroot -proot"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=3
-
-    steps:
-      - uses: actions/checkout@v3
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '7.4'
-          extensions: mbstring, intl, pdo_mysql
-
-      - name: Install Composer deps
-        run: composer install --prefer-dist --no-progress --no-suggest
-
-      - name: Create & migrate test DB
-        run: |
-          php bin/console doctrine:database:create --env=test --if-not-exists
-          php bin/console doctrine:schema:update --force --env=test
-
-      - name: Run unit tests
-        run: php bin/phpunit --testsuite=Unit
-
-      - name: Run integration tests
-        run: php bin/phpunit --testsuite=Integration
-```
+Example pipeline stages can be found in the `Jenkinsfile`.
 
 ---
 
@@ -158,15 +132,16 @@ nelmio_cors:
 
 ## Migrate test-to-prod data
 
-To copy validated data from the test database (`astreinte_test`) to the main production database (`astreinte`), run the custom Symfony console command found in:
+To copy validated data from the test database (`astreinte_test`) to the main production database (`astreinte`), run the custom Symfony console command:
+
+```bash
+php bin/console app:import-tested-data
+```
+
+This command is located in:
 
 ```
 src/Command/ImportTestedDataCommand.php
-```
-
-Usage example:
-```bash
-php bin/console app:import-tested-data
 ```
 
 ---

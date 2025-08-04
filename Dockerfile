@@ -34,6 +34,13 @@ RUN echo '<Directory /var/www/html/public>\n    AllowOverride All\n    Require a
 # Change les droits (optionnel, dépend des droits locaux Docker)
 RUN chown -R www-data:www-data /var/www/html/var /var/www/html/vendor
 
+# --- Installation de SonarScanner ---
+RUN apt-get update && \
+    apt-get install -y openjdk-11-jre wget && \
+    wget -O /tmp/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip && \
+    unzip /tmp/sonar-scanner.zip -d /opt && \
+    ln -s /opt/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner /usr/local/bin/sonar-scanner
+
 # Expose le port Apache (ici 8001)
 EXPOSE 8001
 

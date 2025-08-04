@@ -35,6 +35,14 @@ pipeline {
                 sh "docker exec ${CONTAINER} php bin/console doctrine:migrations:migrate --no-interaction"
             }
         }
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('LocalSonar') {  // Remplace 'LocalSonar' par le nom que tu as mis dans Jenkins
+                    sh "docker exec ${CONTAINER} ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml || true"
+                    sh "docker exec ${CONTAINER} sonar-scanner -Dsonar.projectKey=astreinte -Dsonar.php.coverage.reportPaths=build/logs/clover.xml"
+                }
+            }
+        }
         stage('Static Analysis (PHPStan)') {
             steps {
                 sh "mkdir -p var/tests"
@@ -50,7 +58,6 @@ pipeline {
     }
     post {
         always {
-            // ➡️ Copie le fichier junit.xml du container vers Jenkins (host)
             sh "docker cp ${CONTAINER}:/var/www/html/var/tests/junit.xml ./var/tests/junit.xml || true"
             junit 'var/tests/*.xml'
             // recordIssues tools: [phpStan(pattern: 'var/tests/phpstan.xml')]

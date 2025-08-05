@@ -48,7 +48,6 @@ pipeline {
             steps {
                 sh "docker exec ${CONTAINER} mkdir -p build/logs"
                 sh "docker exec ${CONTAINER} ./vendor/bin/phpunit --coverage-clover ${COVERAGE_FILE} --coverage-filter=src/Entity"
-
             }
         }
 
@@ -68,8 +67,15 @@ pipeline {
                             script: """
                             docker exec ${CONTAINER} php -r '
                                 \$xml = simplexml_load_file("${COVERAGE_FILE}");
-                                \$covered = (int)\$xml->project->metrics["@coveredstatements"];
-                                \$statements = (int)\$xml->project->metrics["@statements"];
+                                \$covered = 0;
+                                \$statements = 0;
+                                foreach (\$xml->xpath("//file") as \$file) {
+                                    if (strpos((string)\$file["name"], "src/Entity/") !== false) {
+                                        \$metrics = \$file->metrics;
+                                        \$covered += (int)\$metrics["@coveredstatements"];
+                                        \$statements += (int)\$metrics["@statements"];
+                                    }
+                                }
                                 \$rate = \$statements > 0 ? (\$covered / \$statements) * 100 : 0;
                                 echo round(\$rate, 2);
                             '
@@ -77,7 +83,7 @@ pipeline {
                             returnStdout: true
                         ).trim()
 
-                        echo "✅ Couverture des tests : ${coverage}%"
+                        echo "✅ Couverture des tests (src/Entity uniquement) : ${coverage}%"
 
                         if (coverage.isNumber() && coverage.toFloat() < MIN_COVERAGE.toFloat()) {
                             error("❌ Couverture trop faible (${coverage}%) — Minimum requis : ${MIN_COVERAGE}%")

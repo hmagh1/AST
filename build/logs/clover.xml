@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1754386272">
-  <project timestamp="1754386272">
+<coverage generated="1754387241">
+  <project timestamp="1754387241">
     <file name="/var/www/html/src/Controller/Admin/AdministrateurUCACCrudController.php">
       <class name="App\Controller\Admin\AdministrateurUCACCrudController" namespace="global">
         <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>

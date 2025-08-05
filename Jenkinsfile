@@ -39,13 +39,15 @@ pipeline {
         }
         stage('Run Tests & Coverage') {
             steps {
-                sh "docker exec ${CONTAINER} ./vendor/bin/phpunit --coverage-clover ${COVERAGE_FILE} || true"
+                sh "docker exec ${CONTAINER} mkdir -p build/logs"
+                sh "docker exec ${CONTAINER} ./vendor/bin/phpunit --coverage-clover ${COVERAGE_FILE}"
             }
         }
         stage('Check Coverage Threshold') {
             steps {
                 script {
-                    def coverage = sh(script: """
+                    def coverage = sh(
+                        script: """
                         docker exec ${CONTAINER} php -r '
                             \$xml = simplexml_load_file("${COVERAGE_FILE}");
                             \$covered = (int)\$xml->project->metrics["@coveredstatements"];
@@ -53,12 +55,14 @@ pipeline {
                             \$rate = \$statements > 0 ? (\$covered / \$statements) * 100 : 0;
                             echo round(\$rate, 2);
                         '
-                    """, returnStdout: true).trim()
-                    
+                        """,
+                        returnStdout: true
+                    ).trim()
+
                     echo "✅ Couverture des tests : ${coverage}%"
-                    
-                    if (coverage.toFloat() < MIN_COVERAGE.toFloat()) {
-                        error("❌ Le taux de couverture (${coverage}%) est inférieur au minimum requis de ${MIN_COVERAGE}%.")
+
+                    if (coverage.isNumber() && coverage.toFloat() < MIN_COVERAGE.toFloat()) {
+                        error("❌ Couverture trop faible (${coverage}%) — Minimum requis : ${MIN_COVERAGE}%")
                     }
                 }
             }
@@ -72,13 +76,11 @@ pipeline {
         }
         stage('Static Analysis (PHPStan)') {
             steps {
-                sh "mkdir -p var/tests"
                 sh "docker exec ${CONTAINER} vendor/bin/phpstan analyse --error-format=checkstyle > var/tests/phpstan.xml || true"
             }
         }
         stage('JUnit Report') {
             steps {
-                sh "mkdir -p var/tests"
                 sh "docker exec ${CONTAINER} ./vendor/bin/phpunit --log-junit var/tests/junit.xml"
             }
         }

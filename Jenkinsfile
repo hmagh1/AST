@@ -3,6 +3,8 @@ pipeline {
     environment {
         PROJECT_DIR = '/var/www/html'
         CONTAINER = 'astreinte-php'
+        COVERAGE_FILE = 'build/logs/clover.xml'
+        MIN_COVERAGE = 75
     }
     stages {
         stage('Prepare .env') {
@@ -35,11 +37,36 @@ pipeline {
                 sh "docker exec ${CONTAINER} php bin/console doctrine:migrations:migrate --no-interaction"
             }
         }
+        stage('Run Tests & Coverage') {
+            steps {
+                sh "docker exec ${CONTAINER} ./vendor/bin/phpunit --coverage-clover ${COVERAGE_FILE} || true"
+            }
+        }
+        stage('Check Coverage Threshold') {
+            steps {
+                script {
+                    def coverage = sh(script: """
+                        docker exec ${CONTAINER} php -r '
+                            \$xml = simplexml_load_file("${COVERAGE_FILE}");
+                            \$covered = (int)\$xml->project->metrics["@coveredstatements"];
+                            \$statements = (int)\$xml->project->metrics["@statements"];
+                            \$rate = \$statements > 0 ? (\$covered / \$statements) * 100 : 0;
+                            echo round(\$rate, 2);
+                        '
+                    """, returnStdout: true).trim()
+                    
+                    echo "✅ Couverture des tests : ${coverage}%"
+                    
+                    if (coverage.toFloat() < MIN_COVERAGE.toFloat()) {
+                        error("❌ Le taux de couverture (${coverage}%) est inférieur au minimum requis de ${MIN_COVERAGE}%.")
+                    }
+                }
+            }
+        }
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('LocalSonar') {  // Mets le nom correct de ton Sonar ici
-                    sh "docker exec ${CONTAINER} ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml || true"
-                    sh "docker exec ${CONTAINER} sonar-scanner -Dsonar.projectKey=astreinte -Dsonar.php.coverage.reportPaths=build/logs/clover.xml"
+                withSonarQubeEnv('LocalSonar') {
+                    sh "docker exec ${CONTAINER} sonar-scanner -Dsonar.projectKey=astreinte -Dsonar.php.coverage.reportPaths=${COVERAGE_FILE}"
                 }
             }
         }
@@ -49,24 +76,10 @@ pipeline {
                 sh "docker exec ${CONTAINER} vendor/bin/phpstan analyse --error-format=checkstyle > var/tests/phpstan.xml || true"
             }
         }
-        stage('Tests') {
+        stage('JUnit Report') {
             steps {
                 sh "mkdir -p var/tests"
                 sh "docker exec ${CONTAINER} ./vendor/bin/phpunit --log-junit var/tests/junit.xml"
-            }
-        }
-        stage('Deploy to Azure VM') {
-            when {
-                branch 'main' // déploie seulement sur main
-            }
-            steps {
-                sshagent(['jenkins-azure-key']) {
-                    sh '''
-                    ssh -o StrictHostKeyChecking=no azureuser@4.178.177.191 '
-                        cd ~/AST && git pull origin main && docker-compose down && docker-compose up -d --build
-                    '
-                    '''
-                }
             }
         }
     }
@@ -74,7 +87,6 @@ pipeline {
         always {
             sh "docker cp ${CONTAINER}:/var/www/html/var/tests/junit.xml ./var/tests/junit.xml || true"
             junit 'var/tests/*.xml'
-            // recordIssues tools: [phpStan(pattern: 'var/tests/phpstan.xml')]
         }
     }
 }

@@ -47,7 +47,8 @@ pipeline {
         stage('Run Tests & Coverage') {
             steps {
                 sh "docker exec ${CONTAINER} mkdir -p build/logs"
-                sh "docker exec ${CONTAINER} ./vendor/bin/phpunit --coverage-clover ${COVERAGE_FILE}"
+                sh "docker exec ${CONTAINER} ./vendor/bin/phpunit --coverage-clover ${COVERAGE_FILE} --coverage-filter=src/Entity"
+
             }
         }
 

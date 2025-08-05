@@ -2,5 +2,5 @@ projectKey=astreinte
 serverUrl=http://localhost:9001
 serverVersion=25.7.0.110598
 dashboardUrl=http://localhost:9001/dashboard?id=astreinte
-ceTaskId=9de42a8a-d8e4-4b99-b5da-e8c9a1614368
-ceTaskUrl=http://localhost:9001/api/ce/task?id=9de42a8a-d8e4-4b99-b5da-e8c9a1614368
+ceTaskId=eefb448d-3cb0-477e-bc7a-2dd9e28efc95
+ceTaskUrl=http://localhost:9001/api/ce/task?id=eefb448d-3cb0-477e-bc7a-2dd9e28efc95

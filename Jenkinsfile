@@ -84,7 +84,7 @@ $dom->save($file);
                                 \$covered = 0;
                                 \$statements = 0;
                                 foreach (\$xml->xpath("//file") as \$file) {
-                                    if (strpos((string)\$file["@name"], "src/Entity/") === 0) {
+                                    if (strpos((string)\$file["name"], "src/Entity/") === 0) {
                                         \$metrics = \$file->metrics;
                                         \$covered += (int)\$metrics["@coveredstatements"];
                                         \$statements += (int)\$metrics["@statements"];

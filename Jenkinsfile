@@ -46,22 +46,22 @@ pipeline {
         }
         stage('Fix Coverage Paths') {
             steps {
+                // Crée un fichier PHP temporaire dans le container pour nettoyer les chemins du clover.xml
                 sh """
 docker exec ${CONTAINER} sh -c '
-cat > /tmp/fix_clover.php <<PHP
-<?php
-\$file = "build/logs/clover.xml";
+echo "<?php
+\$file = \\"${COVERAGE_FILE}\\";
 \$dom = new DOMDocument();
 \$dom->load(\$file);
-foreach (\$dom->getElementsByTagName("file") as \$fileNode) {
-    \$name = \$fileNode->getAttribute("name");
-    if (strpos(\$name, "/var/www/html/") === 0) {
-        \$relative = substr(\$name, strlen("/var/www/html/"));
-        \$fileNode->setAttribute("name", \$relative);
+foreach (\$dom->getElementsByTagName(\\"file\\") as \$fileNode) {
+    \$name = \$fileNode->getAttribute(\\"name\\");
+    if (strpos(\$name, \\"/var/www/html/\\") === 0) {
+        \$relative = substr(\$name, strlen(\\"/var/www/html/\\"));
+        \$fileNode->setAttribute(\\"name\\", \$relative);
     }
 }
 \$dom->save(\$file);
-PHP
+" > /tmp/fix_clover.php
 php /tmp/fix_clover.php
 rm /tmp/fix_clover.php
 '

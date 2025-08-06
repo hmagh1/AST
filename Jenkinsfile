@@ -48,19 +48,22 @@ pipeline {
             steps {
                 sh """
 docker exec ${CONTAINER} sh -c '
-php -r "
-\$file = \\"build/logs/clover.xml\\";
+cat > /tmp/fix_clover.php <<PHP
+<?php
+\$file = "build/logs/clover.xml";
 \$dom = new DOMDocument();
 \$dom->load(\$file);
-foreach (\$dom->getElementsByTagName(\\"file\\") as \$fileNode) {
-    \$name = \$fileNode->getAttribute(\\"name\\");
-    if (strpos(\$name, \\"/var/www/html/\\") === 0) {
-        \$relative = substr(\$name, strlen(\\"/var/www/html/\\"));
-        \$fileNode->setAttribute(\\"name\\", \$relative);
+foreach (\$dom->getElementsByTagName("file") as \$fileNode) {
+    \$name = \$fileNode->getAttribute("name");
+    if (strpos(\$name, "/var/www/html/") === 0) {
+        \$relative = substr(\$name, strlen("/var/www/html/"));
+        \$fileNode->setAttribute("name", \$relative);
     }
 }
 \$dom->save(\$file);
-"
+PHP
+php /tmp/fix_clover.php
+rm /tmp/fix_clover.php
 '
                 """
             }

@@ -47,16 +47,27 @@ pipeline {
         stage('Run Tests & Coverage') {
             steps {
                 sh "docker exec ${CONTAINER} mkdir -p build/logs"
-                // Attention : le coverage-filter doit être supporté par ta version de PHPUnit
                 sh "docker exec ${CONTAINER} ./vendor/bin/phpunit --coverage-clover ${COVERAGE_FILE} --coverage-filter=src/Entity"
             }
         }
 
+        // --- Correction pour Sonar, transformer les paths absolus en relatifs
         stage('Fix Coverage Paths') {
             steps {
-                sh """
-                docker exec ${CONTAINER} php -r "\$dom = new DOMDocument(); \$dom->load('${COVERAGE_FILE}'); foreach (\$dom->getElementsByTagName('file') as \$file) { \$name = \$file->getAttribute('name'); if (strpos(\$name, '/var/www/html/') === 0) { \$relative = substr(\$name, strlen('/var/www/html/')); \$file->setAttribute('name', \$relative); } } \$dom->save('${COVERAGE_FILE}');"
-                """
+                sh '''
+                docker exec ${CONTAINER} php -r "
+                \$dom = new DOMDocument();
+                \$dom->load('${COVERAGE_FILE}');
+                foreach (\$dom->getElementsByTagName('file') as \$file) {
+                    \$name = \$file->getAttribute('name');
+                    if (strpos(\$name, '/var/www/html/') === 0) {
+                        \$relative = substr(\$name, strlen('/var/www/html/'));
+                        \$file->setAttribute('name', \$relative);
+                    }
+                }
+                \$dom->save('${COVERAGE_FILE}');
+                "
+                '''
             }
         }
 

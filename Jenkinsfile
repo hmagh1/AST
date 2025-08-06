@@ -73,39 +73,42 @@ $dom->save($file);
                 }
             }
         }
-        stage('Check Coverage Threshold') {
-            steps {
-                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-                    script {
-                        def coverage = sh(
-                            script: """
-                            docker exec ${CONTAINER} php -r '
-                                \$xml = simplexml_load_file("${COVERAGE_FILE}");
-                                \$covered = 0;
-                                \$statements = 0;
-                                foreach (\$xml->xpath("//file") as \$file) {
-                                    if (strpos((string)\$file["name"], "src/Entity/") === 0) {
-                                        \$metrics = \$file->metrics;
-                                        \$covered += (int)\$metrics["@coveredstatements"];
-                                        \$statements += (int)\$metrics["@statements"];
-                                    }
+       stage('Check Coverage Threshold') {
+    steps {
+        catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+            script {
+                def coverage = sh(
+                    script: """
+                    docker exec ${CONTAINER} php -r '
+                        \$xml = simplexml_load_file("${COVERAGE_FILE}");
+                        \$covered = 0;
+                        \$statements = 0;
+                        foreach (\$xml->xpath("//file") as \$file) {
+                            if (strpos((string)\$file["name"], "src/Entity/") === 0) {
+                                foreach (\$file->metrics as \$metrics) {
+                                    \$covered += (int)\$metrics["coveredstatements"];
+                                    \$statements += (int)\$metrics["statements"];
                                 }
-                                \$rate = \$statements > 0 ? (\$covered / \$statements) * 100 : 0;
-                                echo round(\$rate, 2);
-                            '
-                            """,
-                            returnStdout: true
-                        ).trim()
-
-                        echo "✅ Couverture des tests (src/Entity uniquement) : ${coverage}%"
-
-                        if (coverage.isNumber() && coverage.toFloat() < MIN_COVERAGE.toFloat()) {
-                            error("❌ Couverture trop faible (${coverage}%) — Minimum requis : ${MIN_COVERAGE}%")
+                            }
                         }
-                    }
+                        \$rate = \$statements > 0 ? (\$covered / \$statements) * 100 : 0;
+                        echo round(\$rate, 2);
+                    '
+                    """,
+                    returnStdout: true
+                ).trim()
+
+                echo "✅ Couverture des tests (src/Entity uniquement) : ${coverage}%"
+
+                def coverageValue = coverage as Float
+                if (coverageValue < (MIN_COVERAGE as Float)) {
+                    error("❌ Couverture trop faible (${coverageValue}%) — Minimum requis : ${MIN_COVERAGE}%")
                 }
             }
         }
+    }
+}
+
         stage('Static Analysis (PHPStan)') {
             steps {
                 sh "docker exec ${CONTAINER} mkdir -p var/tests"

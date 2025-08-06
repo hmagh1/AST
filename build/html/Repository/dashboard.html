@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /var/www/html/src/Repository</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../_css/bootstrap.min.css?v=9.2.32" rel="stylesheet" type="text/css">
+  <link href="../_css/nv.d3.min.css?v=9.2.32" rel="stylesheet" type="text/css">
+  <link href="../_css/style.css?v=9.2.32" rel="stylesheet" type="text/css">
+  <link href="../_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="../index.html">/var/www/html/src</a></li>
+         <li class="breadcrumb-item"><a href="index.html">Repository</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="AdministrateurUCACRepository.php.html#16">App\Repository\AdministrateurUCACRepository</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="AstreignableRepository.php.html#17">App\Repository\AstreignableRepository</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DRHRepository.php.html#17">App\Repository\DRHRepository</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MainCouranteRepository.php.html#17">App\Repository\MainCouranteRepository</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="PlanningAstreinteRepository.php.html#17">App\Repository\PlanningAstreinteRepository</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ServiceFaitRepository.php.html#17">App\Repository\ServiceFaitRepository</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="UserRepository.php.html#20">App\Repository\UserRepository</a></td><td class="text-right">0%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="UserRepository.php.html#20">App\Repository\UserRepository</a></td><td class="text-right">56</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="AdministrateurUCACRepository.php.html#18"><abbr title="App\Repository\AdministrateurUCACRepository::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="PlanningAstreinteRepository.php.html#19"><abbr title="App\Repository\PlanningAstreinteRepository::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="UserRepository.php.html#36"><abbr title="App\Repository\UserRepository::remove">remove</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="UserRepository.php.html#27"><abbr title="App\Repository\UserRepository::add">add</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="UserRepository.php.html#22"><abbr title="App\Repository\UserRepository::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ServiceFaitRepository.php.html#42"><abbr title="App\Repository\ServiceFaitRepository::findByAstreignableId">findByAstreignableId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ServiceFaitRepository.php.html#33"><abbr title="App\Repository\ServiceFaitRepository::findValidated">findValidated</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ServiceFaitRepository.php.html#24"><abbr title="App\Repository\ServiceFaitRepository::findLatest">findLatest</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ServiceFaitRepository.php.html#19"><abbr title="App\Repository\ServiceFaitRepository::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="PlanningAstreinteRepository.php.html#42"><abbr title="App\Repository\PlanningAstreinteRepository::findActive">findActive</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="PlanningAstreinteRepository.php.html#33"><abbr title="App\Repository\PlanningAstreinteRepository::findByStatut">findByStatut</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="PlanningAstreinteRepository.php.html#24"><abbr title="App\Repository\PlanningAstreinteRepository::findLatest">findLatest</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MainCouranteRepository.php.html#33"><abbr title="App\Repository\MainCouranteRepository::findByAstreignableId">findByAstreignableId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="AdministrateurUCACRepository.php.html#24"><abbr title="App\Repository\AdministrateurUCACRepository::findLatest">findLatest</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MainCouranteRepository.php.html#24"><abbr title="App\Repository\MainCouranteRepository::findLatest">findLatest</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MainCouranteRepository.php.html#19"><abbr title="App\Repository\MainCouranteRepository::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DRHRepository.php.html#33"><abbr title="App\Repository\DRHRepository::findOneByNom">findOneByNom</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DRHRepository.php.html#24"><abbr title="App\Repository\DRHRepository::findLatest">findLatest</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DRHRepository.php.html#19"><abbr title="App\Repository\DRHRepository::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="AstreignableRepository.php.html#42"><abbr title="App\Repository\AstreignableRepository::findByDirection">findByDirection</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="AstreignableRepository.php.html#33"><abbr title="App\Repository\AstreignableRepository::findAvailable">findAvailable</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="AstreignableRepository.php.html#24"><abbr title="App\Repository\AstreignableRepository::findLatest">findLatest</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="AstreignableRepository.php.html#19"><abbr title="App\Repository\AstreignableRepository::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="AdministrateurUCACRepository.php.html#33"><abbr title="App\Repository\AdministrateurUCACRepository::findOneByEmail">findOneByEmail</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="UserRepository.php.html#48"><abbr title="App\Repository\UserRepository::upgradePassword">upgradePassword</abbr></a></td><td class="text-right">0%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="UserRepository.php.html#27"><abbr title="App\Repository\UserRepository::add">add</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="UserRepository.php.html#36"><abbr title="App\Repository\UserRepository::remove">remove</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="UserRepository.php.html#48"><abbr title="App\Repository\UserRepository::upgradePassword">upgradePassword</abbr></a></td><td class="text-right">6</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 9.2.32</a> using <a href="https://secure.php.net/" target="_top">PHP 7.4.33</a> and <a href="https://phpunit.de/">PHPUnit 9.6.23</a> at Wed Aug 6 12:14:48 UTC 2025.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="../_js/jquery.min.js?v=9.2.32" type="text/javascript"></script>
+  <script src="../_js/d3.min.js?v=9.2.32" type="text/javascript"></script>
+  <script src="../_js/nv.d3.min.js?v=9.2.32" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([7,0,0,0,0,0,0,0,0,0,0,0], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([25,0,0,0,0,0,0,0,0,0,0,0], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[0,3,"<a href=\"AdministrateurUCACRepository.php.html#16\">App\\Repository\\AdministrateurUCACRepository<\/a>"],[0,4,"<a href=\"AstreignableRepository.php.html#17\">App\\Repository\\AstreignableRepository<\/a>"],[0,3,"<a href=\"DRHRepository.php.html#17\">App\\Repository\\DRHRepository<\/a>"],[0,3,"<a href=\"MainCouranteRepository.php.html#17\">App\\Repository\\MainCouranteRepository<\/a>"],[0,4,"<a href=\"PlanningAstreinteRepository.php.html#17\">App\\Repository\\PlanningAstreinteRepository<\/a>"],[0,4,"<a href=\"ServiceFaitRepository.php.html#17\">App\\Repository\\ServiceFaitRepository<\/a>"],[0,7,"<a href=\"UserRepository.php.html#20\">App\\Repository\\UserRepository<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[0,1,"<a href=\"AdministrateurUCACRepository.php.html#18\">App\\Repository\\AdministrateurUCACRepository::__construct<\/a>"],[0,1,"<a href=\"AdministrateurUCACRepository.php.html#24\">App\\Repository\\AdministrateurUCACRepository::findLatest<\/a>"],[0,1,"<a href=\"AdministrateurUCACRepository.php.html#33\">App\\Repository\\AdministrateurUCACRepository::findOneByEmail<\/a>"],[0,1,"<a href=\"AstreignableRepository.php.html#19\">App\\Repository\\AstreignableRepository::__construct<\/a>"],[0,1,"<a href=\"AstreignableRepository.php.html#24\">App\\Repository\\AstreignableRepository::findLatest<\/a>"],[0,1,"<a href=\"AstreignableRepository.php.html#33\">App\\Repository\\AstreignableRepository::findAvailable<\/a>"],[0,1,"<a href=\"AstreignableRepository.php.html#42\">App\\Repository\\AstreignableRepository::findByDirection<\/a>"],[0,1,"<a href=\"DRHRepository.php.html#19\">App\\Repository\\DRHRepository::__construct<\/a>"],[0,1,"<a href=\"DRHRepository.php.html#24\">App\\Repository\\DRHRepository::findLatest<\/a>"],[0,1,"<a href=\"DRHRepository.php.html#33\">App\\Repository\\DRHRepository::findOneByNom<\/a>"],[0,1,"<a href=\"MainCouranteRepository.php.html#19\">App\\Repository\\MainCouranteRepository::__construct<\/a>"],[0,1,"<a href=\"MainCouranteRepository.php.html#24\">App\\Repository\\MainCouranteRepository::findLatest<\/a>"],[0,1,"<a href=\"MainCouranteRepository.php.html#33\">App\\Repository\\MainCouranteRepository::findByAstreignableId<\/a>"],[0,1,"<a href=\"PlanningAstreinteRepository.php.html#19\">App\\Repository\\PlanningAstreinteRepository::__construct<\/a>"],[0,1,"<a href=\"PlanningAstreinteRepository.php.html#24\">App\\Repository\\PlanningAstreinteRepository::findLatest<\/a>"],[0,1,"<a href=\"PlanningAstreinteRepository.php.html#33\">App\\Repository\\PlanningAstreinteRepository::findByStatut<\/a>"],[0,1,"<a href=\"PlanningAstreinteRepository.php.html#42\">App\\Repository\\PlanningAstreinteRepository::findActive<\/a>"],[0,1,"<a href=\"ServiceFaitRepository.php.html#19\">App\\Repository\\ServiceFaitRepository::__construct<\/a>"],[0,1,"<a href=\"ServiceFaitRepository.php.html#24\">App\\Repository\\ServiceFaitRepository::findLatest<\/a>"],[0,1,"<a href=\"ServiceFaitRepository.php.html#33\">App\\Repository\\ServiceFaitRepository::findValidated<\/a>"],[0,1,"<a href=\"ServiceFaitRepository.php.html#42\">App\\Repository\\ServiceFaitRepository::findByAstreignableId<\/a>"],[0,1,"<a href=\"UserRepository.php.html#22\">App\\Repository\\UserRepository::__construct<\/a>"],[0,2,"<a href=\"UserRepository.php.html#27\">App\\Repository\\UserRepository::add<\/a>"],[0,2,"<a href=\"UserRepository.php.html#36\">App\\Repository\\UserRepository::remove<\/a>"],[0,2,"<a href=\"UserRepository.php.html#48\">App\\Repository\\UserRepository::upgradePassword<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>

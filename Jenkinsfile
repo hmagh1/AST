@@ -13,69 +13,58 @@ pipeline {
                 sh "docker exec ${CONTAINER} cp .env.test .env"
             }
         }
-
         stage('Install dependencies') {
             steps {
                 sh "docker exec ${CONTAINER} composer install --no-interaction --prefer-dist --no-scripts"
             }
         }
-
         stage('Run Symfony auto-scripts') {
             steps {
                 sh "docker exec ${CONTAINER} bash -c 'export COMPOSER_PROCESS_TIMEOUT=900 && composer run-script auto-scripts'"
             }
         }
-
         stage('Lint YAML') {
             steps {
                 sh "docker exec ${CONTAINER} php bin/console lint:yaml config/"
             }
         }
-
         stage('Doctrine Schema Validate') {
             steps {
                 sh "docker exec ${CONTAINER} php bin/console doctrine:schema:validate --skip-sync -vvv"
             }
         }
-
         stage('Database migrations') {
             steps {
                 sh "docker exec ${CONTAINER} php bin/console doctrine:migrations:migrate --no-interaction"
             }
         }
-
         stage('Run Tests & Coverage') {
             steps {
                 sh "docker exec ${CONTAINER} mkdir -p build/logs"
                 sh "docker exec ${CONTAINER} ./vendor/bin/phpunit --coverage-clover ${COVERAGE_FILE} --coverage-filter=src/Entity"
             }
         }
-
         stage('Fix Coverage Paths') {
             steps {
                 sh """
-                docker exec ${CONTAINER} sh -c '
-cat > /tmp/fix_clover.php <<PHP
-<?php
-\$file = "${COVERAGE_FILE}";
+docker exec ${CONTAINER} sh -c '
+php -r "
+\$file = \\"build/logs/clover.xml\\";
 \$dom = new DOMDocument();
 \$dom->load(\$file);
-foreach (\$dom->getElementsByTagName("file") as \$fileNode) {
-    \$name = \$fileNode->getAttribute("name");
-    if (strpos(\$name, "/var/www/html/") === 0) {
-        \$relative = substr(\$name, strlen("/var/www/html/"));
-        \$fileNode->setAttribute("name", \$relative);
+foreach (\$dom->getElementsByTagName(\\"file\\") as \$fileNode) {
+    \$name = \$fileNode->getAttribute(\\"name\\");
+    if (strpos(\$name, \\"/var/www/html/\\") === 0) {
+        \$relative = substr(\$name, strlen(\\"/var/www/html/\\"));
+        \$fileNode->setAttribute(\\"name\\", \$relative);
     }
 }
 \$dom->save(\$file);
-PHP
-php /tmp/fix_clover.php
-rm /tmp/fix_clover.php
+"
 '
                 """
             }
         }
-
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('LocalSonar') {
@@ -83,7 +72,6 @@ rm /tmp/fix_clover.php
                 }
             }
         }
-
         stage('Check Coverage Threshold') {
             steps {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
@@ -117,14 +105,12 @@ rm /tmp/fix_clover.php
                 }
             }
         }
-
         stage('Static Analysis (PHPStan)') {
             steps {
                 sh "docker exec ${CONTAINER} mkdir -p var/tests"
                 sh "docker exec ${CONTAINER} vendor/bin/phpstan analyse --error-format=checkstyle > var/tests/phpstan.xml || true"
             }
         }
-
         stage('JUnit Report') {
             steps {
                 sh "docker exec ${CONTAINER} mkdir -p var/tests"

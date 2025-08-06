@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /var/www/html/src</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="_css/bootstrap.min.css?v=9.2.32" rel="stylesheet" type="text/css">
+  <link href="_css/nv.d3.min.css?v=9.2.32" rel="stylesheet" type="text/css">
+  <link href="_css/style.css?v=9.2.32" rel="stylesheet" type="text/css">
+  <link href="_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="index.html">/var/www/html/src</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Controller/Admin/AdministrateurUCACCrudController.php.html#8">App\Controller\Admin\AdministrateurUCACCrudController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/PlanningAstreinteController.php.html#17">App\Controller\PlanningAstreinteController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/UserRepository.php.html#20">App\Repository\UserRepository</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/ServiceFaitRepository.php.html#17">App\Repository\ServiceFaitRepository</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/PlanningAstreinteRepository.php.html#17">App\Repository\PlanningAstreinteRepository</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/MainCouranteRepository.php.html#17">App\Repository\MainCouranteRepository</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/DRHRepository.php.html#17">App\Repository\DRHRepository</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/AstreignableRepository.php.html#17">App\Repository\AstreignableRepository</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/AdministrateurUCACRepository.php.html#16">App\Repository\AdministrateurUCACRepository</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/FilteredAstreignableType.php.html#12">App\Form\FilteredAstreignableType</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DataFixtures/TestFixtures.php.html#11">App\DataFixtures\TestFixtures</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DataFixtures/AppFixtures.php.html#17">App\DataFixtures\AppFixtures</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/ServiceFaitController.php.html#17">App\Controller\ServiceFaitController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/SecurityController.php.html#12">App\Controller\SecurityController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/MainCouranteController.php.html#17">App\Controller\MainCouranteController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Admin/AstreignableCrudController.php.html#15">App\Controller\Admin\AstreignableCrudController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/DRHController.php.html#17">App\Controller\DRHController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/AstreignableController.php.html#21">App\Controller\AstreignableController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Astreignable/ServiceFaitCrudController.php.html#8">App\Controller\Astreignable\ServiceFaitCrudController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Astreignable/PlanningAstreinteCrudController.php.html#8">App\Controller\Astreignable\PlanningAstreinteCrudController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Astreignable/MainCouranteCrudController.php.html#8">App\Controller\Astreignable\MainCouranteCrudController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Astreignable/DashboardController.php.html#11">App\Controller\Astreignable\DashboardController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/AdministrateurUCACController.php.html#19">App\Controller\AdministrateurUCACController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Admin/UserCrudController.php.html#8">App\Controller\Admin\UserCrudController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Admin/ServiceFaitCrudController.php.html#8">App\Controller\Admin\ServiceFaitCrudController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Admin/PlanningAstreinteCrudController.php.html#15">App\Controller\Admin\PlanningAstreinteCrudController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Admin/MainCouranteCrudController.php.html#8">App\Controller\Admin\MainCouranteCrudController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Admin/DashboardController.php.html#18">App\Controller\Admin\DashboardController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Admin/DRHCrudController.php.html#8">App\Controller\Admin\DRHCrudController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Security/LoginFormAuthenticator.php.html#15">App\Security\LoginFormAuthenticator</a></td><td class="text-right">0%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Controller/AstreignableController.php.html#21">App\Controller\AstreignableController</a></td><td class="text-right">110</td></tr>
+       <tr><td><a href="Controller/Admin/AstreignableCrudController.php.html#15">App\Controller\Admin\AstreignableCrudController</a></td><td class="text-right">72</td></tr>
+       <tr><td><a href="Controller/AdministrateurUCACController.php.html#19">App\Controller\AdministrateurUCACController</a></td><td class="text-right">72</td></tr>
+       <tr><td><a href="Repository/UserRepository.php.html#20">App\Repository\UserRepository</a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="Controller/SecurityController.php.html#12">App\Controller\SecurityController</a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="Security/LoginFormAuthenticator.php.html#15">App\Security\LoginFormAuthenticator</a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Controller/Admin/PlanningAstreinteCrudController.php.html#15">App\Controller\Admin\PlanningAstreinteCrudController</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="DataFixtures/AppFixtures.php.html#17">App\DataFixtures\AppFixtures</a></td><td class="text-right">12</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Controller/Admin/AdministrateurUCACCrudController.php.html#10"><abbr title="App\Controller\Admin\AdministrateurUCACCrudController::getEntityFqcn">getEntityFqcn</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DataFixtures/AppFixtures.php.html#21"><abbr title="App\DataFixtures\AppFixtures::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/AdministrateurUCACRepository.php.html#24"><abbr title="App\Repository\AdministrateurUCACRepository::findLatest">findLatest</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/AdministrateurUCACRepository.php.html#18"><abbr title="App\Repository\AdministrateurUCACRepository::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/FilteredAstreignableType.php.html#31"><abbr title="App\Form\FilteredAstreignableType::configureOptions">configureOptions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/FilteredAstreignableType.php.html#14"><abbr title="App\Form\FilteredAstreignableType::buildForm">buildForm</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#47"><abbr title="App\Entity\User::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/ServiceFait.php.html#28"><abbr title="App\Entity\ServiceFait::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/PlanningAstreinte.php.html#45"><abbr title="App\Entity\PlanningAstreinte::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DataFixtures/TestFixtures.php.html#13"><abbr title="App\DataFixtures\TestFixtures::load">load</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DataFixtures/AppFixtures.php.html#26"><abbr title="App\DataFixtures\AppFixtures::load">load</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/ServiceFaitController.php.html#103"><abbr title="App\Controller\ServiceFaitController::byAstreignable">byAstreignable</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/AstreignableRepository.php.html#19"><abbr title="App\Repository\AstreignableRepository::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/ServiceFaitController.php.html#92"><abbr title="App\Controller\ServiceFaitController::valides">valides</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/ServiceFaitController.php.html#82"><abbr title="App\Controller\ServiceFaitController::delete">delete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/ServiceFaitController.php.html#64"><abbr title="App\Controller\ServiceFaitController::update">update</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/ServiceFaitController.php.html#44"><abbr title="App\Controller\ServiceFaitController::create">create</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/ServiceFaitController.php.html#33"><abbr title="App\Controller\ServiceFaitController::show">show</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/ServiceFaitController.php.html#22"><abbr title="App\Controller\ServiceFaitController::index">index</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/SecurityController.php.html#51"><abbr title="App\Controller\SecurityController::logout">logout</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/SecurityController.php.html#33"><abbr title="App\Controller\SecurityController::login">login</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/SecurityController.php.html#17"><abbr title="App\Controller\SecurityController::home">home</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/PlanningAstreinteController.php.html#105"><abbr title="App\Controller\PlanningAstreinteController::actifs">actifs</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/AdministrateurUCACRepository.php.html#33"><abbr title="App\Repository\AdministrateurUCACRepository::findOneByEmail">findOneByEmail</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/AstreignableRepository.php.html#24"><abbr title="App\Repository\AstreignableRepository::findLatest">findLatest</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/PlanningAstreinteController.php.html#84"><abbr title="App\Controller\PlanningAstreinteController::delete">delete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/ServiceFaitRepository.php.html#19"><abbr title="App\Repository\ServiceFaitRepository::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Security/LoginFormAuthenticator.php.html#37"><abbr title="App\Security\LoginFormAuthenticator::getLoginUrl">getLoginUrl</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Security/LoginFormAuthenticator.php.html#25"><abbr title="App\Security\LoginFormAuthenticator::authenticate">authenticate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Security/LoginFormAuthenticator.php.html#20"><abbr title="App\Security\LoginFormAuthenticator::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/UserRepository.php.html#48"><abbr title="App\Repository\UserRepository::upgradePassword">upgradePassword</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/UserRepository.php.html#36"><abbr title="App\Repository\UserRepository::remove">remove</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/UserRepository.php.html#27"><abbr title="App\Repository\UserRepository::add">add</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/UserRepository.php.html#22"><abbr title="App\Repository\UserRepository::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/ServiceFaitRepository.php.html#42"><abbr title="App\Repository\ServiceFaitRepository::findByAstreignableId">findByAstreignableId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/ServiceFaitRepository.php.html#33"><abbr title="App\Repository\ServiceFaitRepository::findValidated">findValidated</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/ServiceFaitRepository.php.html#24"><abbr title="App\Repository\ServiceFaitRepository::findLatest">findLatest</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/PlanningAstreinteRepository.php.html#42"><abbr title="App\Repository\PlanningAstreinteRepository::findActive">findActive</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/AstreignableRepository.php.html#33"><abbr title="App\Repository\AstreignableRepository::findAvailable">findAvailable</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/PlanningAstreinteRepository.php.html#33"><abbr title="App\Repository\PlanningAstreinteRepository::findByStatut">findByStatut</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/PlanningAstreinteRepository.php.html#24"><abbr title="App\Repository\PlanningAstreinteRepository::findLatest">findLatest</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/PlanningAstreinteRepository.php.html#19"><abbr title="App\Repository\PlanningAstreinteRepository::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/MainCouranteRepository.php.html#33"><abbr title="App\Repository\MainCouranteRepository::findByAstreignableId">findByAstreignableId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/MainCouranteRepository.php.html#24"><abbr title="App\Repository\MainCouranteRepository::findLatest">findLatest</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/MainCouranteRepository.php.html#19"><abbr title="App\Repository\MainCouranteRepository::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/DRHRepository.php.html#33"><abbr title="App\Repository\DRHRepository::findOneByNom">findOneByNom</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/DRHRepository.php.html#24"><abbr title="App\Repository\DRHRepository::findLatest">findLatest</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/DRHRepository.php.html#19"><abbr title="App\Repository\DRHRepository::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/AstreignableRepository.php.html#42"><abbr title="App\Repository\AstreignableRepository::findByDirection">findByDirection</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/PlanningAstreinteController.php.html#94"><abbr title="App\Controller\PlanningAstreinteController::byStatut">byStatut</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/PlanningAstreinteController.php.html#65"><abbr title="App\Controller\PlanningAstreinteController::update">update</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Admin/AstreignableCrudController.php.html#19"><abbr title="App\Controller\Admin\AstreignableCrudController::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Admin/PlanningAstreinteCrudController.php.html#30"><abbr title="App\Controller\Admin\PlanningAstreinteCrudController::configureFields">configureFields</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Astreignable/DashboardController.php.html#25"><abbr title="App\Controller\Astreignable\DashboardController::configureDashboard">configureDashboard</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Astreignable/DashboardController.php.html#16"><abbr title="App\Controller\Astreignable\DashboardController::index">index</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/AdministrateurUCACController.php.html#88"><abbr title="App\Controller\AdministrateurUCACController::byEmail">byEmail</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/AdministrateurUCACController.php.html#79"><abbr title="App\Controller\AdministrateurUCACController::delete">delete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/AdministrateurUCACController.php.html#62"><abbr title="App\Controller\AdministrateurUCACController::update">update</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/AdministrateurUCACController.php.html#43"><abbr title="App\Controller\AdministrateurUCACController::create">create</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/AdministrateurUCACController.php.html#33"><abbr title="App\Controller\AdministrateurUCACController::show">show</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/AdministrateurUCACController.php.html#22"><abbr title="App\Controller\AdministrateurUCACController::index">index</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Admin/UserCrudController.php.html#10"><abbr title="App\Controller\Admin\UserCrudController::getEntityFqcn">getEntityFqcn</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Admin/ServiceFaitCrudController.php.html#10"><abbr title="App\Controller\Admin\ServiceFaitCrudController::getEntityFqcn">getEntityFqcn</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Admin/PlanningAstreinteCrudController.php.html#22"><abbr title="App\Controller\Admin\PlanningAstreinteCrudController::configureCrud">configureCrud</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Astreignable/MainCouranteCrudController.php.html#10"><abbr title="App\Controller\Astreignable\MainCouranteCrudController::getEntityFqcn">getEntityFqcn</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Admin/PlanningAstreinteCrudController.php.html#17"><abbr title="App\Controller\Admin\PlanningAstreinteCrudController::getEntityFqcn">getEntityFqcn</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Admin/MainCouranteCrudController.php.html#10"><abbr title="App\Controller\Admin\MainCouranteCrudController::getEntityFqcn">getEntityFqcn</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Admin/DashboardController.php.html#51"><abbr title="App\Controller\Admin\DashboardController::configureMenuItems">configureMenuItems</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Admin/DashboardController.php.html#42"><abbr title="App\Controller\Admin\DashboardController::configureDashboard">configureDashboard</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Admin/DashboardController.php.html#26"><abbr title="App\Controller\Admin\DashboardController::index">index</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Admin/DRHCrudController.php.html#10"><abbr title="App\Controller\Admin\DRHCrudController::getEntityFqcn">getEntityFqcn</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Admin/AstreignableCrudController.php.html#70"><abbr title="App\Controller\Admin\AstreignableCrudController::updateEntity">updateEntity</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Admin/AstreignableCrudController.php.html#46"><abbr title="App\Controller\Admin\AstreignableCrudController::persistEntity">persistEntity</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Admin/AstreignableCrudController.php.html#29"><abbr title="App\Controller\Admin\AstreignableCrudController::configureFields">configureFields</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Admin/AstreignableCrudController.php.html#24"><abbr title="App\Controller\Admin\AstreignableCrudController::getEntityFqcn">getEntityFqcn</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Astreignable/DashboardController.php.html#31"><abbr title="App\Controller\Astreignable\DashboardController::configureMenuItems">configureMenuItems</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Astreignable/PlanningAstreinteCrudController.php.html#10"><abbr title="App\Controller\Astreignable\PlanningAstreinteCrudController::getEntityFqcn">getEntityFqcn</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/PlanningAstreinteController.php.html#44"><abbr title="App\Controller\PlanningAstreinteController::create">create</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/DRHController.php.html#62"><abbr title="App\Controller\DRHController::update">update</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/PlanningAstreinteController.php.html#33"><abbr title="App\Controller\PlanningAstreinteController::show">show</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/PlanningAstreinteController.php.html#22"><abbr title="App\Controller\PlanningAstreinteController::index">index</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/MainCouranteController.php.html#90"><abbr title="App\Controller\MainCouranteController::byAstreignable">byAstreignable</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/MainCouranteController.php.html#80"><abbr title="App\Controller\MainCouranteController::delete">delete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/MainCouranteController.php.html#63"><abbr title="App\Controller\MainCouranteController::update">update</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/MainCouranteController.php.html#44"><abbr title="App\Controller\MainCouranteController::create">create</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/MainCouranteController.php.html#33"><abbr title="App\Controller\MainCouranteController::show">show</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/MainCouranteController.php.html#22"><abbr title="App\Controller\MainCouranteController::index">index</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/DRHController.php.html#88"><abbr title="App\Controller\DRHController::byNom">byNom</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/DRHController.php.html#78"><abbr title="App\Controller\DRHController::delete">delete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/DRHController.php.html#44"><abbr title="App\Controller\DRHController::create">create</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Astreignable/ServiceFaitCrudController.php.html#10"><abbr title="App\Controller\Astreignable\ServiceFaitCrudController::getEntityFqcn">getEntityFqcn</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/DRHController.php.html#33"><abbr title="App\Controller\DRHController::show">show</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/DRHController.php.html#22"><abbr title="App\Controller\DRHController::index">index</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/AstreignableController.php.html#139"><abbr title="App\Controller\AstreignableController::byDirection">byDirection</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/AstreignableController.php.html#128"><abbr title="App\Controller\AstreignableController::disponibles">disponibles</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/AstreignableController.php.html#119"><abbr title="App\Controller\AstreignableController::delete">delete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/AstreignableController.php.html#98"><abbr title="App\Controller\AstreignableController::update">update</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/AstreignableController.php.html#59"><abbr title="App\Controller\AstreignableController::create">create</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/AstreignableController.php.html#49"><abbr title="App\Controller\AstreignableController::show">show</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/AstreignableController.php.html#38"><abbr title="App\Controller\AstreignableController::index">index</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/AstreignableController.php.html#27"><abbr title="App\Controller\AstreignableController::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Security/LoginFormAuthenticator.php.html#42"><abbr title="App\Security\LoginFormAuthenticator::onAuthenticationSuccess">onAuthenticationSuccess</abbr></a></td><td class="text-right">0%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Controller/Admin/AstreignableCrudController.php.html#70"><abbr title="App\Controller\Admin\AstreignableCrudController::updateEntity">updateEntity</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/AdministrateurUCACController.php.html#62"><abbr title="App\Controller\AdministrateurUCACController::update">update</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/AstreignableController.php.html#98"><abbr title="App\Controller\AstreignableController::update">update</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/SecurityController.php.html#17"><abbr title="App\Controller\SecurityController::home">home</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/Admin/AstreignableCrudController.php.html#46"><abbr title="App\Controller\Admin\AstreignableCrudController::persistEntity">persistEntity</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Controller/Admin/PlanningAstreinteCrudController.php.html#30"><abbr title="App\Controller\Admin\PlanningAstreinteCrudController::configureFields">configureFields</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Controller/SecurityController.php.html#33"><abbr title="App\Controller\SecurityController::login">login</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="DataFixtures/AppFixtures.php.html#26"><abbr title="App\DataFixtures\AppFixtures::load">load</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Repository/UserRepository.php.html#27"><abbr title="App\Repository\UserRepository::add">add</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Repository/UserRepository.php.html#36"><abbr title="App\Repository\UserRepository::remove">remove</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Repository/UserRepository.php.html#48"><abbr title="App\Repository\UserRepository::upgradePassword">upgradePassword</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Security/LoginFormAuthenticator.php.html#42"><abbr title="App\Security\LoginFormAuthenticator::onAuthenticationSuccess">onAuthenticationSuccess</abbr></a></td><td class="text-right">6</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 9.2.32</a> using <a href="https://secure.php.net/" target="_top">PHP 7.4.33</a> and <a href="https://phpunit.de/">PHPUnit 9.6.23</a> at Wed Aug 6 12:14:48 UTC 2025.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="_js/jquery.min.js?v=9.2.32" type="text/javascript"></script>
+  <script src="_js/d3.min.js?v=9.2.32" type="text/javascript"></script>
+  <script src="_js/nv.d3.min.js?v=9.2.32" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([30,0,0,0,0,0,0,0,0,0,3,5], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([102,0,0,0,0,0,0,0,0,0,0,87], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[0,1,"<a href=\"Controller\/Admin\/AdministrateurUCACCrudController.php.html#8\">App\\Controller\\Admin\\AdministrateurUCACCrudController<\/a>"],[0,8,"<a href=\"Controller\/Admin\/AstreignableCrudController.php.html#15\">App\\Controller\\Admin\\AstreignableCrudController<\/a>"],[0,1,"<a href=\"Controller\/Admin\/DRHCrudController.php.html#8\">App\\Controller\\Admin\\DRHCrudController<\/a>"],[0,3,"<a href=\"Controller\/Admin\/DashboardController.php.html#18\">App\\Controller\\Admin\\DashboardController<\/a>"],[0,1,"<a href=\"Controller\/Admin\/MainCouranteCrudController.php.html#8\">App\\Controller\\Admin\\MainCouranteCrudController<\/a>"],[0,4,"<a href=\"Controller\/Admin\/PlanningAstreinteCrudController.php.html#15\">App\\Controller\\Admin\\PlanningAstreinteCrudController<\/a>"],[0,1,"<a href=\"Controller\/Admin\/ServiceFaitCrudController.php.html#8\">App\\Controller\\Admin\\ServiceFaitCrudController<\/a>"],[0,1,"<a href=\"Controller\/Admin\/UserCrudController.php.html#8\">App\\Controller\\Admin\\UserCrudController<\/a>"],[0,8,"<a href=\"Controller\/AdministrateurUCACController.php.html#19\">App\\Controller\\AdministrateurUCACController<\/a>"],[0,3,"<a href=\"Controller\/Astreignable\/DashboardController.php.html#11\">App\\Controller\\Astreignable\\DashboardController<\/a>"],[0,1,"<a href=\"Controller\/Astreignable\/MainCouranteCrudController.php.html#8\">App\\Controller\\Astreignable\\MainCouranteCrudController<\/a>"],[0,1,"<a href=\"Controller\/Astreignable\/PlanningAstreinteCrudController.php.html#8\">App\\Controller\\Astreignable\\PlanningAstreinteCrudController<\/a>"],[0,1,"<a href=\"Controller\/Astreignable\/ServiceFaitCrudController.php.html#8\">App\\Controller\\Astreignable\\ServiceFaitCrudController<\/a>"],[0,10,"<a href=\"Controller\/AstreignableController.php.html#21\">App\\Controller\\AstreignableController<\/a>"],[0,6,"<a href=\"Controller\/DRHController.php.html#17\">App\\Controller\\DRHController<\/a>"],[0,6,"<a href=\"Controller\/MainCouranteController.php.html#17\">App\\Controller\\MainCouranteController<\/a>"],[0,7,"<a href=\"Controller\/PlanningAstreinteController.php.html#17\">App\\Controller\\PlanningAstreinteController<\/a>"],[0,6,"<a href=\"Controller\/SecurityController.php.html#12\">App\\Controller\\SecurityController<\/a>"],[0,7,"<a href=\"Controller\/ServiceFaitController.php.html#17\">App\\Controller\\ServiceFaitController<\/a>"],[0,3,"<a href=\"DataFixtures\/AppFixtures.php.html#17\">App\\DataFixtures\\AppFixtures<\/a>"],[0,1,"<a href=\"DataFixtures\/TestFixtures.php.html#11\">App\\DataFixtures\\TestFixtures<\/a>"],[100,7,"<a href=\"Entity\/AdministrateurUCAC.php.html#11\">App\\Entity\\AdministrateurUCAC<\/a>"],[100,41,"<a href=\"Entity\/Astreignable.php.html#15\">App\\Entity\\Astreignable<\/a>"],[100,3,"<a href=\"Entity\/DRH.php.html#11\">App\\Entity\\DRH<\/a>"],[100,7,"<a href=\"Entity\/MainCourante.php.html#11\">App\\Entity\\MainCourante<\/a>"],[96.42857142857143,18,"<a href=\"Entity\/PlanningAstreinte.php.html#14\">App\\Entity\\PlanningAstreinte<\/a>"],[90.9090909090909,10,"<a href=\"Entity\/ServiceFait.php.html#11\">App\\Entity\\ServiceFait<\/a>"],[95.45454545454545,15,"<a href=\"Entity\/User.php.html#13\">App\\Entity\\User<\/a>"],[0,2,"<a href=\"Form\/FilteredAstreignableType.php.html#12\">App\\Form\\FilteredAstreignableType<\/a>"],[100,0,"<a href=\"Kernel.php.html#8\">App\\Kernel<\/a>"],[0,3,"<a href=\"Repository\/AdministrateurUCACRepository.php.html#16\">App\\Repository\\AdministrateurUCACRepository<\/a>"],[0,4,"<a href=\"Repository\/AstreignableRepository.php.html#17\">App\\Repository\\AstreignableRepository<\/a>"],[0,3,"<a href=\"Repository\/DRHRepository.php.html#17\">App\\Repository\\DRHRepository<\/a>"],[0,3,"<a href=\"Repository\/MainCouranteRepository.php.html#17\">App\\Repository\\MainCouranteRepository<\/a>"],[0,4,"<a href=\"Repository\/PlanningAstreinteRepository.php.html#17\">App\\Repository\\PlanningAstreinteRepository<\/a>"],[0,4,"<a href=\"Repository\/ServiceFaitRepository.php.html#17\">App\\Repository\\ServiceFaitRepository<\/a>"],[0,7,"<a href=\"Repository\/UserRepository.php.html#20\">App\\Repository\\UserRepository<\/a>"],[0,5,"<a href=\"Security\/LoginFormAuthenticator.php.html#15\">App\\Security\\LoginFormAuthenticator<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[0,1,"<a href=\"Controller\/Admin\/AdministrateurUCACCrudController.php.html#10\">App\\Controller\\Admin\\AdministrateurUCACCrudController::getEntityFqcn<\/a>"],[0,1,"<a href=\"Controller\/Admin\/AstreignableCrudController.php.html#19\">App\\Controller\\Admin\\AstreignableCrudController::__construct<\/a>"],[0,1,"<a href=\"Controller\/Admin\/AstreignableCrudController.php.html#24\">App\\Controller\\Admin\\AstreignableCrudController::getEntityFqcn<\/a>"],[0,1,"<a href=\"Controller\/Admin\/AstreignableCrudController.php.html#29\">App\\Controller\\Admin\\AstreignableCrudController::configureFields<\/a>"],[0,2,"<a href=\"Controller\/Admin\/AstreignableCrudController.php.html#46\">App\\Controller\\Admin\\AstreignableCrudController::persistEntity<\/a>"],[0,3,"<a href=\"Controller\/Admin\/AstreignableCrudController.php.html#70\">App\\Controller\\Admin\\AstreignableCrudController::updateEntity<\/a>"],[0,1,"<a href=\"Controller\/Admin\/DRHCrudController.php.html#10\">App\\Controller\\Admin\\DRHCrudController::getEntityFqcn<\/a>"],[0,1,"<a href=\"Controller\/Admin\/DashboardController.php.html#26\">App\\Controller\\Admin\\DashboardController::index<\/a>"],[0,1,"<a href=\"Controller\/Admin\/DashboardController.php.html#42\">App\\Controller\\Admin\\DashboardController::configureDashboard<\/a>"],[0,1,"<a href=\"Controller\/Admin\/DashboardController.php.html#51\">App\\Controller\\Admin\\DashboardController::configureMenuItems<\/a>"],[0,1,"<a href=\"Controller\/Admin\/MainCouranteCrudController.php.html#10\">App\\Controller\\Admin\\MainCouranteCrudController::getEntityFqcn<\/a>"],[0,1,"<a href=\"Controller\/Admin\/PlanningAstreinteCrudController.php.html#17\">App\\Controller\\Admin\\PlanningAstreinteCrudController::getEntityFqcn<\/a>"],[0,1,"<a href=\"Controller\/Admin\/PlanningAstreinteCrudController.php.html#22\">App\\Controller\\Admin\\PlanningAstreinteCrudController::configureCrud<\/a>"],[0,2,"<a href=\"Controller\/Admin\/PlanningAstreinteCrudController.php.html#30\">App\\Controller\\Admin\\PlanningAstreinteCrudController::configureFields<\/a>"],[0,1,"<a href=\"Controller\/Admin\/ServiceFaitCrudController.php.html#10\">App\\Controller\\Admin\\ServiceFaitCrudController::getEntityFqcn<\/a>"],[0,1,"<a href=\"Controller\/Admin\/UserCrudController.php.html#10\">App\\Controller\\Admin\\UserCrudController::getEntityFqcn<\/a>"],[0,1,"<a href=\"Controller\/AdministrateurUCACController.php.html#22\">App\\Controller\\AdministrateurUCACController::index<\/a>"],[0,1,"<a href=\"Controller\/AdministrateurUCACController.php.html#33\">App\\Controller\\AdministrateurUCACController::show<\/a>"],[0,1,"<a href=\"Controller\/AdministrateurUCACController.php.html#43\">App\\Controller\\AdministrateurUCACController::create<\/a>"],[0,3,"<a href=\"Controller\/AdministrateurUCACController.php.html#62\">App\\Controller\\AdministrateurUCACController::update<\/a>"],[0,1,"<a href=\"Controller\/AdministrateurUCACController.php.html#79\">App\\Controller\\AdministrateurUCACController::delete<\/a>"],[0,1,"<a href=\"Controller\/AdministrateurUCACController.php.html#88\">App\\Controller\\AdministrateurUCACController::byEmail<\/a>"],[0,1,"<a href=\"Controller\/Astreignable\/DashboardController.php.html#16\">App\\Controller\\Astreignable\\DashboardController::index<\/a>"],[0,1,"<a href=\"Controller\/Astreignable\/DashboardController.php.html#25\">App\\Controller\\Astreignable\\DashboardController::configureDashboard<\/a>"],[0,1,"<a href=\"Controller\/Astreignable\/DashboardController.php.html#31\">App\\Controller\\Astreignable\\DashboardController::configureMenuItems<\/a>"],[0,1,"<a href=\"Controller\/Astreignable\/MainCouranteCrudController.php.html#10\">App\\Controller\\Astreignable\\MainCouranteCrudController::getEntityFqcn<\/a>"],[0,1,"<a href=\"Controller\/Astreignable\/PlanningAstreinteCrudController.php.html#10\">App\\Controller\\Astreignable\\PlanningAstreinteCrudController::getEntityFqcn<\/a>"],[0,1,"<a href=\"Controller\/Astreignable\/ServiceFaitCrudController.php.html#10\">App\\Controller\\Astreignable\\ServiceFaitCrudController::getEntityFqcn<\/a>"],[0,1,"<a href=\"Controller\/AstreignableController.php.html#27\">App\\Controller\\AstreignableController::__construct<\/a>"],[0,1,"<a href=\"Controller\/AstreignableController.php.html#38\">App\\Controller\\AstreignableController::index<\/a>"],[0,1,"<a href=\"Controller\/AstreignableController.php.html#49\">App\\Controller\\AstreignableController::show<\/a>"],[0,1,"<a href=\"Controller\/AstreignableController.php.html#59\">App\\Controller\\AstreignableController::create<\/a>"],[0,3,"<a href=\"Controller\/AstreignableController.php.html#98\">App\\Controller\\AstreignableController::update<\/a>"],[0,1,"<a href=\"Controller\/AstreignableController.php.html#119\">App\\Controller\\AstreignableController::delete<\/a>"],[0,1,"<a href=\"Controller\/AstreignableController.php.html#128\">App\\Controller\\AstreignableController::disponibles<\/a>"],[0,1,"<a href=\"Controller\/AstreignableController.php.html#139\">App\\Controller\\AstreignableController::byDirection<\/a>"],[0,1,"<a href=\"Controller\/DRHController.php.html#22\">App\\Controller\\DRHController::index<\/a>"],[0,1,"<a href=\"Controller\/DRHController.php.html#33\">App\\Controller\\DRHController::show<\/a>"],[0,1,"<a href=\"Controller\/DRHController.php.html#44\">App\\Controller\\DRHController::create<\/a>"],[0,1,"<a href=\"Controller\/DRHController.php.html#62\">App\\Controller\\DRHController::update<\/a>"],[0,1,"<a href=\"Controller\/DRHController.php.html#78\">App\\Controller\\DRHController::delete<\/a>"],[0,1,"<a href=\"Controller\/DRHController.php.html#88\">App\\Controller\\DRHController::byNom<\/a>"],[0,1,"<a href=\"Controller\/MainCouranteController.php.html#22\">App\\Controller\\MainCouranteController::index<\/a>"],[0,1,"<a href=\"Controller\/MainCouranteController.php.html#33\">App\\Controller\\MainCouranteController::show<\/a>"],[0,1,"<a href=\"Controller\/MainCouranteController.php.html#44\">App\\Controller\\MainCouranteController::create<\/a>"],[0,1,"<a href=\"Controller\/MainCouranteController.php.html#63\">App\\Controller\\MainCouranteController::update<\/a>"],[0,1,"<a href=\"Controller\/MainCouranteController.php.html#80\">App\\Controller\\MainCouranteController::delete<\/a>"],[0,1,"<a href=\"Controller\/MainCouranteController.php.html#90\">App\\Controller\\MainCouranteController::byAstreignable<\/a>"],[0,1,"<a href=\"Controller\/PlanningAstreinteController.php.html#22\">App\\Controller\\PlanningAstreinteController::index<\/a>"],[0,1,"<a href=\"Controller\/PlanningAstreinteController.php.html#33\">App\\Controller\\PlanningAstreinteController::show<\/a>"],[0,1,"<a href=\"Controller\/PlanningAstreinteController.php.html#44\">App\\Controller\\PlanningAstreinteController::create<\/a>"],[0,1,"<a href=\"Controller\/PlanningAstreinteController.php.html#65\">App\\Controller\\PlanningAstreinteController::update<\/a>"],[0,1,"<a href=\"Controller\/PlanningAstreinteController.php.html#84\">App\\Controller\\PlanningAstreinteController::delete<\/a>"],[0,1,"<a href=\"Controller\/PlanningAstreinteController.php.html#94\">App\\Controller\\PlanningAstreinteController::byStatut<\/a>"],[0,1,"<a href=\"Controller\/PlanningAstreinteController.php.html#105\">App\\Controller\\PlanningAstreinteController::actifs<\/a>"],[0,3,"<a href=\"Controller\/SecurityController.php.html#17\">App\\Controller\\SecurityController::home<\/a>"],[0,2,"<a href=\"Controller\/SecurityController.php.html#33\">App\\Controller\\SecurityController::login<\/a>"],[0,1,"<a href=\"Controller\/SecurityController.php.html#51\">App\\Controller\\SecurityController::logout<\/a>"],[0,1,"<a href=\"Controller\/ServiceFaitController.php.html#22\">App\\Controller\\ServiceFaitController::index<\/a>"],[0,1,"<a href=\"Controller\/ServiceFaitController.php.html#33\">App\\Controller\\ServiceFaitController::show<\/a>"],[0,1,"<a href=\"Controller\/ServiceFaitController.php.html#44\">App\\Controller\\ServiceFaitController::create<\/a>"],[0,1,"<a href=\"Controller\/ServiceFaitController.php.html#64\">App\\Controller\\ServiceFaitController::update<\/a>"],[0,1,"<a href=\"Controller\/ServiceFaitController.php.html#82\">App\\Controller\\ServiceFaitController::delete<\/a>"],[0,1,"<a href=\"Controller\/ServiceFaitController.php.html#92\">App\\Controller\\ServiceFaitController::valides<\/a>"],[0,1,"<a href=\"Controller\/ServiceFaitController.php.html#103\">App\\Controller\\ServiceFaitController::byAstreignable<\/a>"],[0,1,"<a href=\"DataFixtures\/AppFixtures.php.html#21\">App\\DataFixtures\\AppFixtures::__construct<\/a>"],[0,2,"<a href=\"DataFixtures\/AppFixtures.php.html#26\">App\\DataFixtures\\AppFixtures::load<\/a>"],[0,1,"<a href=\"DataFixtures\/TestFixtures.php.html#13\">App\\DataFixtures\\TestFixtures::load<\/a>"],[100,1,"<a href=\"Entity\/AdministrateurUCAC.php.html#39\">App\\Entity\\AdministrateurUCAC::getId<\/a>"],[100,1,"<a href=\"Entity\/AdministrateurUCAC.php.html#44\">App\\Entity\\AdministrateurUCAC::getNom<\/a>"],[100,1,"<a href=\"Entity\/AdministrateurUCAC.php.html#49\">App\\Entity\\AdministrateurUCAC::setNom<\/a>"],[100,1,"<a href=\"Entity\/AdministrateurUCAC.php.html#55\">App\\Entity\\AdministrateurUCAC::getEmail<\/a>"],[100,1,"<a href=\"Entity\/AdministrateurUCAC.php.html#60\">App\\Entity\\AdministrateurUCAC::setEmail<\/a>"],[100,1,"<a href=\"Entity\/AdministrateurUCAC.php.html#66\">App\\Entity\\AdministrateurUCAC::getUser<\/a>"],[100,1,"<a href=\"Entity\/AdministrateurUCAC.php.html#71\">App\\Entity\\AdministrateurUCAC::setUser<\/a>"],[100,1,"<a href=\"Entity\/Astreignable.php.html#63\">App\\Entity\\Astreignable::__construct<\/a>"],[100,1,"<a href=\"Entity\/Astreignable.php.html#72\">App\\Entity\\Astreignable::getId<\/a>"],[100,1,"<a href=\"Entity\/Astreignable.php.html#77\">App\\Entity\\Astreignable::getNom<\/a>"],[100,1,"<a href=\"Entity\/Astreignable.php.html#82\">App\\Entity\\Astreignable::setNom<\/a>"],[100,1,"<a href=\"Entity\/Astreignable.php.html#88\">App\\Entity\\Astreignable::getPrenom<\/a>"],[100,1,"<a href=\"Entity\/Astreignable.php.html#93\">App\\Entity\\Astreignable::setPrenom<\/a>"],[100,1,"<a href=\"Entity\/Astreignable.php.html#99\">App\\Entity\\Astreignable::getEmail<\/a>"],[100,1,"<a href=\"Entity\/Astreignable.php.html#104\">App\\Entity\\Astreignable::setEmail<\/a>"],[100,1,"<a href=\"Entity\/Astreignable.php.html#110\">App\\Entity\\Astreignable::getTelephone<\/a>"],[100,1,"<a href=\"Entity\/Astreignable.php.html#115\">App\\Entity\\Astreignable::setTelephone<\/a>"],[100,1,"<a href=\"Entity\/Astreignable.php.html#121\">App\\Entity\\Astreignable::getSeniorite<\/a>"],[100,1,"<a href=\"Entity\/Astreignable.php.html#126\">App\\Entity\\Astreignable::setSeniorite<\/a>"],[100,1,"<a href=\"Entity\/Astreignable.php.html#132\">App\\Entity\\Astreignable::getDirection<\/a>"],[100,1,"<a href=\"Entity\/Astreignable.php.html#137\">App\\Entity\\Astreignable::setDirection<\/a>"],[100,1,"<a href=\"Entity\/Astreignable.php.html#143\">App\\Entity\\Astreignable::getDisponible<\/a>"],[100,1,"<a href=\"Entity\/Astreignable.php.html#148\">App\\Entity\\Astreignable::setDisponible<\/a>"],[100,1,"<a href=\"Entity\/Astreignable.php.html#154\">App\\Entity\\Astreignable::isDisponible<\/a>"],[100,1,"<a href=\"Entity\/Astreignable.php.html#162\">App\\Entity\\Astreignable::getPlannings<\/a>"],[100,2,"<a href=\"Entity\/Astreignable.php.html#167\">App\\Entity\\Astreignable::addPlanning<\/a>"],[100,2,"<a href=\"Entity\/Astreignable.php.html#176\">App\\Entity\\Astreignable::removePlanning<\/a>"],[100,1,"<a href=\"Entity\/Astreignable.php.html#187\">App\\Entity\\Astreignable::getServices<\/a>"],[100,2,"<a href=\"Entity\/Astreignable.php.html#192\">App\\Entity\\Astreignable::addService<\/a>"],[100,3,"<a href=\"Entity\/Astreignable.php.html#201\">App\\Entity\\Astreignable::removeService<\/a>"],[100,1,"<a href=\"Entity\/Astreignable.php.html#212\">App\\Entity\\Astreignable::getMainCourantes<\/a>"],[100,2,"<a href=\"Entity\/Astreignable.php.html#217\">App\\Entity\\Astreignable::addMainCourante<\/a>"],[100,3,"<a href=\"Entity\/Astreignable.php.html#226\">App\\Entity\\Astreignable::removeMainCourante<\/a>"],[100,1,"<a href=\"Entity\/Astreignable.php.html#238\">App\\Entity\\Astreignable::getUser<\/a>"],[100,3,"<a href=\"Entity\/Astreignable.php.html#243\">App\\Entity\\Astreignable::setUser<\/a>"],[100,1,"<a href=\"Entity\/Astreignable.php.html#254\">App\\Entity\\Astreignable::getPlainPassword<\/a>"],[100,1,"<a href=\"Entity\/Astreignable.php.html#259\">App\\Entity\\Astreignable::setPlainPassword<\/a>"],[100,1,"<a href=\"Entity\/Astreignable.php.html#265\">App\\Entity\\Astreignable::__toString<\/a>"],[100,1,"<a href=\"Entity\/DRH.php.html#19\">App\\Entity\\DRH::getId<\/a>"],[100,1,"<a href=\"Entity\/DRH.php.html#20\">App\\Entity\\DRH::getNom<\/a>"],[100,1,"<a href=\"Entity\/DRH.php.html#21\">App\\Entity\\DRH::setNom<\/a>"],[100,1,"<a href=\"Entity\/MainCourante.php.html#25\">App\\Entity\\MainCourante::getId<\/a>"],[100,1,"<a href=\"Entity\/MainCourante.php.html#26\">App\\Entity\\MainCourante::getDate<\/a>"],[100,1,"<a href=\"Entity\/MainCourante.php.html#27\">App\\Entity\\MainCourante::setDate<\/a>"],[100,1,"<a href=\"Entity\/MainCourante.php.html#28\">App\\Entity\\MainCourante::getDetails<\/a>"],[100,1,"<a href=\"Entity\/MainCourante.php.html#29\">App\\Entity\\MainCourante::setDetails<\/a>"],[100,1,"<a href=\"Entity\/MainCourante.php.html#31\">App\\Entity\\MainCourante::getAstreignable<\/a>"],[100,1,"<a href=\"Entity\/MainCourante.php.html#36\">App\\Entity\\MainCourante::setAstreignable<\/a>"],[100,1,"<a href=\"Entity\/PlanningAstreinte.php.html#40\">App\\Entity\\PlanningAstreinte::__construct<\/a>"],[0,1,"<a href=\"Entity\/PlanningAstreinte.php.html#45\">App\\Entity\\PlanningAstreinte::getId<\/a>"],[100,1,"<a href=\"Entity\/PlanningAstreinte.php.html#50\">App\\Entity\\PlanningAstreinte::getDateDebut<\/a>"],[100,1,"<a href=\"Entity\/PlanningAstreinte.php.html#55\">App\\Entity\\PlanningAstreinte::setDateDebut<\/a>"],[100,1,"<a href=\"Entity\/PlanningAstreinte.php.html#61\">App\\Entity\\PlanningAstreinte::getDateFin<\/a>"],[100,1,"<a href=\"Entity\/PlanningAstreinte.php.html#66\">App\\Entity\\PlanningAstreinte::setDateFin<\/a>"],[100,1,"<a href=\"Entity\/PlanningAstreinte.php.html#72\">App\\Entity\\PlanningAstreinte::getTheme<\/a>"],[100,1,"<a href=\"Entity\/PlanningAstreinte.php.html#77\">App\\Entity\\PlanningAstreinte::setTheme<\/a>"],[100,1,"<a href=\"Entity\/PlanningAstreinte.php.html#83\">App\\Entity\\PlanningAstreinte::getStatut<\/a>"],[100,1,"<a href=\"Entity\/PlanningAstreinte.php.html#88\">App\\Entity\\PlanningAstreinte::setStatut<\/a>"],[100,1,"<a href=\"Entity\/PlanningAstreinte.php.html#94\">App\\Entity\\PlanningAstreinte::getBinome<\/a>"],[100,2,"<a href=\"Entity\/PlanningAstreinte.php.html#99\">App\\Entity\\PlanningAstreinte::addBinome<\/a>"],[100,1,"<a href=\"Entity\/PlanningAstreinte.php.html#107\">App\\Entity\\PlanningAstreinte::removeBinome<\/a>"],[100,1,"<a href=\"Entity\/PlanningAstreinte.php.html#112\">App\\Entity\\PlanningAstreinte::getBinomeList<\/a>"],[100,1,"<a href=\"Entity\/PlanningAstreinte.php.html#120\">App\\Entity\\PlanningAstreinte::getBinomeNames<\/a>"],[100,1,"<a href=\"Entity\/PlanningAstreinte.php.html#124\">App\\Entity\\PlanningAstreinte::getAstreintNom<\/a>"],[100,1,"<a href=\"Entity\/PlanningAstreinte.php.html#128\">App\\Entity\\PlanningAstreinte::setAstreintNom<\/a>"],[0,1,"<a href=\"Entity\/ServiceFait.php.html#28\">App\\Entity\\ServiceFait::getId<\/a>"],[100,1,"<a href=\"Entity\/ServiceFait.php.html#29\">App\\Entity\\ServiceFait::getDate<\/a>"],[100,1,"<a href=\"Entity\/ServiceFait.php.html#30\">App\\Entity\\ServiceFait::setDate<\/a>"],[100,1,"<a href=\"Entity\/ServiceFait.php.html#31\">App\\Entity\\ServiceFait::getHeuresEffectuees<\/a>"],[100,1,"<a href=\"Entity\/ServiceFait.php.html#32\">App\\Entity\\ServiceFait::setHeuresEffectuees<\/a>"],[100,1,"<a href=\"Entity\/ServiceFait.php.html#33\">App\\Entity\\ServiceFait::getValide<\/a>"],[100,1,"<a href=\"Entity\/ServiceFait.php.html#34\">App\\Entity\\ServiceFait::setValide<\/a>"],[100,1,"<a href=\"Entity\/ServiceFait.php.html#36\">App\\Entity\\ServiceFait::isValide<\/a>"],[100,1,"<a href=\"Entity\/ServiceFait.php.html#41\">App\\Entity\\ServiceFait::getAstreignable<\/a>"],[100,1,"<a href=\"Entity\/ServiceFait.php.html#46\">App\\Entity\\ServiceFait::setAstreignable<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#47\">App\\Entity\\User::getId<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#52\">App\\Entity\\User::getEmail<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#57\">App\\Entity\\User::setEmail<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#64\">App\\Entity\\User::getUserIdentifier<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#70\">App\\Entity\\User::getUsername<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#75\">App\\Entity\\User::getRoles<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#84\">App\\Entity\\User::setRoles<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#91\">App\\Entity\\User::getPassword<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#96\">App\\Entity\\User::setPassword<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#103\">App\\Entity\\User::getSalt<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#109\">App\\Entity\\User::eraseCredentials<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#114\">App\\Entity\\User::getAdminProfile<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#119\">App\\Entity\\User::setAdminProfile<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#125\">App\\Entity\\User::getAstreignableProfile<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#130\">App\\Entity\\User::setAstreignableProfile<\/a>"],[0,1,"<a href=\"Form\/FilteredAstreignableType.php.html#14\">App\\Form\\FilteredAstreignableType::buildForm<\/a>"],[0,1,"<a href=\"Form\/FilteredAstreignableType.php.html#31\">App\\Form\\FilteredAstreignableType::configureOptions<\/a>"],[0,1,"<a href=\"Repository\/AdministrateurUCACRepository.php.html#18\">App\\Repository\\AdministrateurUCACRepository::__construct<\/a>"],[0,1,"<a href=\"Repository\/AdministrateurUCACRepository.php.html#24\">App\\Repository\\AdministrateurUCACRepository::findLatest<\/a>"],[0,1,"<a href=\"Repository\/AdministrateurUCACRepository.php.html#33\">App\\Repository\\AdministrateurUCACRepository::findOneByEmail<\/a>"],[0,1,"<a href=\"Repository\/AstreignableRepository.php.html#19\">App\\Repository\\AstreignableRepository::__construct<\/a>"],[0,1,"<a href=\"Repository\/AstreignableRepository.php.html#24\">App\\Repository\\AstreignableRepository::findLatest<\/a>"],[0,1,"<a href=\"Repository\/AstreignableRepository.php.html#33\">App\\Repository\\AstreignableRepository::findAvailable<\/a>"],[0,1,"<a href=\"Repository\/AstreignableRepository.php.html#42\">App\\Repository\\AstreignableRepository::findByDirection<\/a>"],[0,1,"<a href=\"Repository\/DRHRepository.php.html#19\">App\\Repository\\DRHRepository::__construct<\/a>"],[0,1,"<a href=\"Repository\/DRHRepository.php.html#24\">App\\Repository\\DRHRepository::findLatest<\/a>"],[0,1,"<a href=\"Repository\/DRHRepository.php.html#33\">App\\Repository\\DRHRepository::findOneByNom<\/a>"],[0,1,"<a href=\"Repository\/MainCouranteRepository.php.html#19\">App\\Repository\\MainCouranteRepository::__construct<\/a>"],[0,1,"<a href=\"Repository\/MainCouranteRepository.php.html#24\">App\\Repository\\MainCouranteRepository::findLatest<\/a>"],[0,1,"<a href=\"Repository\/MainCouranteRepository.php.html#33\">App\\Repository\\MainCouranteRepository::findByAstreignableId<\/a>"],[0,1,"<a href=\"Repository\/PlanningAstreinteRepository.php.html#19\">App\\Repository\\PlanningAstreinteRepository::__construct<\/a>"],[0,1,"<a href=\"Repository\/PlanningAstreinteRepository.php.html#24\">App\\Repository\\PlanningAstreinteRepository::findLatest<\/a>"],[0,1,"<a href=\"Repository\/PlanningAstreinteRepository.php.html#33\">App\\Repository\\PlanningAstreinteRepository::findByStatut<\/a>"],[0,1,"<a href=\"Repository\/PlanningAstreinteRepository.php.html#42\">App\\Repository\\PlanningAstreinteRepository::findActive<\/a>"],[0,1,"<a href=\"Repository\/ServiceFaitRepository.php.html#19\">App\\Repository\\ServiceFaitRepository::__construct<\/a>"],[0,1,"<a href=\"Repository\/ServiceFaitRepository.php.html#24\">App\\Repository\\ServiceFaitRepository::findLatest<\/a>"],[0,1,"<a href=\"Repository\/ServiceFaitRepository.php.html#33\">App\\Repository\\ServiceFaitRepository::findValidated<\/a>"],[0,1,"<a href=\"Repository\/ServiceFaitRepository.php.html#42\">App\\Repository\\ServiceFaitRepository::findByAstreignableId<\/a>"],[0,1,"<a href=\"Repository\/UserRepository.php.html#22\">App\\Repository\\UserRepository::__construct<\/a>"],[0,2,"<a href=\"Repository\/UserRepository.php.html#27\">App\\Repository\\UserRepository::add<\/a>"],[0,2,"<a href=\"Repository\/UserRepository.php.html#36\">App\\Repository\\UserRepository::remove<\/a>"],[0,2,"<a href=\"Repository\/UserRepository.php.html#48\">App\\Repository\\UserRepository::upgradePassword<\/a>"],[0,1,"<a href=\"Security\/LoginFormAuthenticator.php.html#20\">App\\Security\\LoginFormAuthenticator::__construct<\/a>"],[0,1,"<a href=\"Security\/LoginFormAuthenticator.php.html#25\">App\\Security\\LoginFormAuthenticator::authenticate<\/a>"],[0,1,"<a href=\"Security\/LoginFormAuthenticator.php.html#37\">App\\Security\\LoginFormAuthenticator::getLoginUrl<\/a>"],[0,2,"<a href=\"Security\/LoginFormAuthenticator.php.html#42\">App\\Security\\LoginFormAuthenticator::onAuthenticationSuccess<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>

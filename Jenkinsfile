@@ -46,26 +46,24 @@ pipeline {
         }
         stage('Fix Coverage Paths') {
             steps {
-                // Crée un fichier PHP temporaire dans le container pour nettoyer les chemins du clover.xml
-                sh """
-docker exec ${CONTAINER} sh -c '
-echo "<?php
-\$file = \\"${COVERAGE_FILE}\\";
-\$dom = new DOMDocument();
-\$dom->load(\$file);
-foreach (\$dom->getElementsByTagName(\\"file\\") as \$fileNode) {
-    \$name = \$fileNode->getAttribute(\\"name\\");
-    if (strpos(\$name, \\"/var/www/html/\\") === 0) {
-        \$relative = substr(\$name, strlen(\\"/var/www/html/\\"));
-        \$fileNode->setAttribute(\\"name\\", \$relative);
+                script {
+                    writeFile file: 'fix_clover.php', text: '''
+<?php
+$file = 'build/logs/clover.xml';
+$dom = new DOMDocument();
+$dom->load($file);
+foreach ($dom->getElementsByTagName('file') as $fileNode) {
+    $name = $fileNode->getAttribute('name');
+    if (strpos($name, '/var/www/html/') === 0) {
+        $relative = substr($name, strlen('/var/www/html/'));
+        $fileNode->setAttribute('name', $relative);
     }
 }
-\$dom->save(\$file);
-" > /tmp/fix_clover.php
-php /tmp/fix_clover.php
-rm /tmp/fix_clover.php
-'
-                """
+$dom->save($file);
+'''
+                    sh "docker cp fix_clover.php ${CONTAINER}:/tmp/fix_clover.php"
+                    sh "docker exec ${CONTAINER} php /tmp/fix_clover.php"
+                }
             }
         }
         stage('SonarQube Analysis') {
@@ -86,7 +84,7 @@ rm /tmp/fix_clover.php
                                 \$covered = 0;
                                 \$statements = 0;
                                 foreach (\$xml->xpath("//file") as \$file) {
-                                    if (strpos((string)\$file["name"], "src/Entity/") !== false) {
+                                    if (strpos((string)\$file["@name"], "src/Entity/") === 0) {
                                         \$metrics = \$file->metrics;
                                         \$covered += (int)\$metrics["@coveredstatements"];
                                         \$statements += (int)\$metrics["@statements"];

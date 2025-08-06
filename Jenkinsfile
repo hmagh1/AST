@@ -51,23 +51,28 @@ pipeline {
             }
         }
 
-        // --- Correction pour Sonar, transformer les paths absolus en relatifs
         stage('Fix Coverage Paths') {
             steps {
-                sh '''
-                docker exec ${CONTAINER} php -r "
-                \$dom = new DOMDocument();
-                \$dom->load('${COVERAGE_FILE}');
-                foreach (\$dom->getElementsByTagName('file') as \$file) {
-                    \$name = \$file->getAttribute('name');
-                    if (strpos(\$name, '/var/www/html/') === 0) {
-                        \$relative = substr(\$name, strlen('/var/www/html/'));
-                        \$file->setAttribute('name', \$relative);
-                    }
-                }
-                \$dom->save('${COVERAGE_FILE}');
-                "
-                '''
+                sh """
+                docker exec ${CONTAINER} sh -c '
+cat > /tmp/fix_clover.php <<PHP
+<?php
+\$file = "${COVERAGE_FILE}";
+\$dom = new DOMDocument();
+\$dom->load(\$file);
+foreach (\$dom->getElementsByTagName("file") as \$fileNode) {
+    \$name = \$fileNode->getAttribute("name");
+    if (strpos(\$name, "/var/www/html/") === 0) {
+        \$relative = substr(\$name, strlen("/var/www/html/"));
+        \$fileNode->setAttribute("name", \$relative);
+    }
+}
+\$dom->save(\$file);
+PHP
+php /tmp/fix_clover.php
+rm /tmp/fix_clover.php
+'
+                """
             }
         }
 

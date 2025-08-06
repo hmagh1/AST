@@ -51,6 +51,27 @@ pipeline {
             }
         }
 
+        // >>>> AJOUT ICI <<<<
+        stage('Fix Coverage Paths') {
+            steps {
+                // Réécriture des paths absolus en relatifs pour Clover.xml
+                sh """
+                docker exec ${CONTAINER} php -r "
+                    \$dom = new DOMDocument();
+                    \$dom->load('${COVERAGE_FILE}');
+                    foreach (\$dom->getElementsByTagName('file') as \$file) {
+                        \$name = \$file->getAttribute('name');
+                        if (strpos(\$name, '/var/www/html/') === 0) {
+                            \$relative = substr(\$name, strlen('/var/www/html/'));
+                            \$file->setAttribute('name', \$relative);
+                        }
+                    }
+                    \$dom->save('${COVERAGE_FILE}');
+                "
+                """
+            }
+        }
+
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('LocalSonar') {

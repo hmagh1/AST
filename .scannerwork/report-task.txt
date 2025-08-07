@@ -2,5 +2,5 @@ projectKey=astreinte
 serverUrl=http://astreinte-sonarqube:9000
 serverVersion=25.7.0.110598
 dashboardUrl=http://astreinte-sonarqube:9000/dashboard?id=astreinte
-ceTaskId=512054d5-179b-44a2-857f-84dd7fd6a515
-ceTaskUrl=http://astreinte-sonarqube:9000/api/ce/task?id=512054d5-179b-44a2-857f-84dd7fd6a515
+ceTaskId=de4e20e3-74d5-4b91-bd1c-50948ad02347
+ceTaskUrl=http://astreinte-sonarqube:9000/api/ce/task?id=de4e20e3-74d5-4b91-bd1c-50948ad02347

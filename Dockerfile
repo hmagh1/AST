@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y \
     default-jre \
     && docker-php-ext-install intl pdo pdo_mysql zip
 
-# ✅ Installation de Xdebug 3.1.6 (compatible PHP 7.4)
+# (Optionnel) Installation de Xdebug, retire si inutile en prod
 RUN pecl install xdebug-3.1.6 \
     && docker-php-ext-enable xdebug \
     && echo "zend_extension=xdebug.so" > /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
@@ -32,7 +32,7 @@ COPY . .
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Installe les dépendances PHP
-RUN composer install --no-interaction
+RUN composer install --no-interaction --optimize-autoloader --no-dev
 
 # Met à jour le DocumentRoot vers le dossier /public
 RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|g' /etc/apache2/sites-available/000-default.conf
@@ -40,19 +40,23 @@ RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|g' /e
 # Autorise l'accès à /public via Apache
 RUN echo '<Directory /var/www/html/public>\n    AllowOverride All\n    Require all granted\n</Directory>' >> /etc/apache2/apache2.conf
 
-# Change les permissions
+# Change les permissions (Symfony 5, utile pour cache/logs)
 RUN chown -R www-data:www-data /var/www/html/var /var/www/html/vendor
 
-# --- Installation de SonarScanner ---
+# --- Installation de SonarScanner (optionnel) ---
 RUN wget -O /tmp/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip && \
     unzip /tmp/sonar-scanner.zip -d /opt && \
     ln -s /opt/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner /usr/local/bin/sonar-scanner
 
-# Expose le port Apache 8001
-EXPOSE 8001
+# Expose le port Apache 8080 (Railway attend le web server sur ce port)
+EXPOSE 8080
 
-# Configure Apache pour écouter sur le port 8001
-RUN sed -i 's/80/8001/g' /etc/apache2/ports.conf /etc/apache2/sites-enabled/000-default.conf
+# Configure Apache pour écouter sur le port 8080
+RUN sed -i 's/80/8080/g' /etc/apache2/ports.conf /etc/apache2/sites-enabled/000-default.conf
+
+# -- Lance migration et fixtures lors du build --
+RUN php bin/console doctrine:migrations:migrate --no-interaction || true \
+ && php bin/console doctrine:fixtures:load --no-interaction || true
 
 # Lance Apache au démarrage
 CMD ["apache2-foreground"]

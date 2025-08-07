@@ -1,56 +1,64 @@
 # Astreinte API
 
 ## Overview
-A RESTful API built with Symfony 5.4 to manage astreinte operations: administrators, on-call staff (astreignables), HR (DRH), main logs (main courantes), service records, and schedules. Includes unit and integration tests, and a CI/CD pipeline using Jenkins and Docker.
 
-## Requirements
-- **PHP** >= 7.2.5 (tested on PHP 7.4.33) - [Download](https://www.php.net/downloads.php)
-- **Composer** >= 1.17 - [Download](https://getcomposer.org/download/)
-- **MySQL** >= 5.7 or MariaDB equivalent - [Download MySQL](https://dev.mysql.com/downloads/) / [MariaDB](https://mariadb.org/download/)
-- **Symfony CLI** (optional) - [Install](https://symfony.com/download)
-- **Node.js** & **npm** (for frontend) - [Download](https://nodejs.org/)
+A RESTful API built with Symfony 5.4 to manage astreinte operations: administrators, on-call staff (astreignables), HR (DRH), main logs (main courantes), service records, and schedules.
+
+- **Technology stack:** PHP 7.4, Symfony 5.4, MySQL, Docker, Jenkins CI/CD
+- **100% Dockerized** — no need to install PHP/MySQL/Composer locally!
+- Includes unit/integration tests, SonarQube analysis, and automatic deployment (see below).
 
 ---
 
-## Installation
+## ⚡ Quick Start (with Docker)
 
-1. Clone the repository and install PHP dependencies:
-   ```bash
-   git clone <repo-url> back
-   cd back
-   composer install
-   ```
+**1. Prerequisite:**  
+- [Install Docker](https://www.docker.com/get-started) (Desktop for Windows/Mac/Linux).
 
-2. Copy `.env` and configure database URLs:
-   ```bash
-   cp .env .env.local
-   # .env.local:
-   # DATABASE_URL="mysql://db_user:db_pass@127.0.0.1:3306/astreinte"
-   # TEST_TOKEN=test
-   # CORS_ALLOW_ORIGIN="^https?://localhost(:[0-9]+)?$"
-   ```
+**2. Clone the repository**
+```bash
+git clone <repo-url> astreinte-back
+cd astreinte-back
+```
 
-3. Create & migrate main database:
-   ```bash
-   php bin/console doctrine:database:create --env=dev
-   php bin/console doctrine:migrations:migrate --env=dev
-   ```
+**3. Start all services (PHP + Apache + MySQL)**
+```bash
+docker compose up -d
+```
+- Le backend Symfony tourne sur [http://localhost:8001](http://localhost:8001)  
+- La base de données MySQL est exposée sur `localhost:3306` (voir `.env`)
 
-4. (Optional) Load fixtures:
-   ```bash
-   php bin/console doctrine:fixtures:load --env=dev
-   ```
+**4. Installer les dépendances PHP, créer la base, appliquer les migrations**  
+Tout s’exécute dans le conteneur :
+```bash
+docker exec astreinte-php composer install
+docker exec astreinte-php php bin/console doctrine:database:create --env=dev
+docker exec astreinte-php php bin/console doctrine:migrations:migrate --env=dev
+```
+**5. (Optionnel) Charger des données de test**
+```bash
+docker exec astreinte-php php bin/console doctrine:fixtures:load --env=dev
+```
 
 ---
 
-## API Routes
+## Utilisation **SANS** dépendances locales
 
-To list available routes:
+- **Aucune version de PHP, Composer, MySQL n’est requise sur votre PC.**
+- Vous exécutez toutes les commandes dans le conteneur Docker via :
+  ```bash
+  docker exec astreinte-php <commande>
+  ```
+- **Peu importe votre version locale de PHP/MySQL** : seule celle dans Docker est utilisée (voir `Dockerfile`).
+
+---
+
+## 📦 API Endpoints
+
+Pour voir toutes les routes :
 ```bash
 docker exec astreinte-php php bin/console debug:router
 ```
-
-Sample output:
 | Entity         | Base URL             | Example Endpoint         |
 |----------------|----------------------|--------------------------|
 | Admins         | `/api/admins`        | `GET /api/admins`        |
@@ -64,7 +72,7 @@ Sample output:
 
 ---
 
-## Project Structure
+## 🏗️ Project Structure
 
 | Folder                         | Purpose                                |
 |--------------------------------|----------------------------------------|
@@ -78,43 +86,49 @@ Sample output:
 
 ---
 
-## Testing
+## 🧪 Testing
 
-### Unit tests
+**Unit tests :**
 ```bash
-php bin/phpunit --testsuite=Unit
+docker exec astreinte-php ./vendor/bin/phpunit --testsuite=Unit
 ```
 
-### Integration tests
+**Integration tests :**
 ```bash
-php bin/console doctrine:database:create --env=test --if-not-exists
-php bin/console doctrine:schema:update --force --env=test
-
-php bin/phpunit --testsuite=Integration
+docker exec astreinte-php php bin/console doctrine:database:create --env=test --if-not-exists
+docker exec astreinte-php php bin/console doctrine:schema:update --force --env=test
+docker exec astreinte-php ./vendor/bin/phpunit --testsuite=Integration
 ```
 
 ---
 
-## CI/CD via Jenkins
+## 🔁 CI/CD (Jenkins)
 
-The project uses Jenkins for continuous integration and deployment inside Docker. The Jenkins pipeline includes:
-
-- Install dependencies
-- Lint YAML
-- Validate Doctrine schema
-- Run migrations
-- Run unit/integration tests
-- PHPStan static analysis
-- SonarQube coverage analysis
-- Deploy to Azure VM (via SSH)
-
-Example pipeline stages can be found in the `Jenkinsfile`.
+La pipeline Jenkins effectue automatiquement :
+- L’installation des dépendances
+- Le lint (YAML)
+- La validation du schéma Doctrine
+- Les migrations
+- Les tests unitaires & d’intégration
+- L’analyse statique (PHPStan)
+- La couverture de code (SonarQube)
+- Le déploiement automatique (voir section suivante)
 
 ---
 
-## CORS
+## 🚀 Déploiement (Production)
 
-Configured via **nelmio/cors-bundle** in `config/packages/nelmio_cors.yaml`:
+> **CI/CD peut être configuré pour déployer automatiquement le conteneur Docker sur Azure (ou tout autre cloud)** si tous les tests passent.
+
+**Exemple de pipeline de déploiement** (à adapter pour Azure VM, App Service, etc.) :  
+Le Jenkinsfile inclut une étape “deploy” qui push l’image Docker ou déclenche un script de déploiement distant.
+
+---
+
+## 🌍 CORS
+
+Géré via le bundle **nelmio/cors-bundle** (voir `config/packages/nelmio_cors.yaml`) :
+
 ```yaml
 nelmio_cors:
     defaults:
@@ -130,21 +144,43 @@ nelmio_cors:
 
 ---
 
-## Migrate test-to-prod data
+## 🛠️ Variables d’environnement (par défaut dans `.env`)
 
-To copy validated data from the test database (`astreinte_test`) to the main production database (`astreinte`), run the custom Symfony console command:
+```
+KERNEL_CLASS=App\Kernel
+APP_SECRET=$ecretf0rt3st
+SYMFONY_DEPRECATIONS_HELPER=999999
+PANTHER_APP_ENV=panther
+PANTHER_ERROR_SCREENSHOT_DIR=./var/error-screenshots
+DATABASE_URL=mysql://astreinte:astreinte@db:3306/astreinte
+```
+À personnaliser dans `.env` ou `.env.local` pour les environnements prod/staging.
+
+---
+
+## 🔄 Migration test → prod
+
+Pour copier les données validées du test vers la prod :
 
 ```bash
-php bin/console app:import-tested-data
+docker exec astreinte-php php bin/console app:import-tested-data
 ```
+Commande : `src/Command/ImportTestedDataCommand.php`
 
-This command is located in:
+---
 
-```
-src/Command/ImportTestedDataCommand.php
-```
+## ❓ FAQ
+
+- **Q : Le projet marche-t-il si j’ai PHP 8 (ou une autre version) sur mon PC ?**  
+  **R : Oui !** Grâce à Docker, seule la version définie dans le projet (PHP 7.4) sera utilisée dans tous les cas.
+
+- **Q : Je n’ai pas MySQL ou Composer localement, c’est grave ?**  
+  **R : Non, rien à installer localement, Docker gère tout pour vous.**
 
 ---
 
 ## License
+
 Proprietary – for internal use only.
+
+---
